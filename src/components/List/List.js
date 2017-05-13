@@ -11,9 +11,9 @@ class List extends Component {
 
   render () {
     var {items} = this.props
-    items = items.map(function (item, index) {
+    items = Object.keys(items).map(function (item, index) {
       return (
-        <Item key={index} item={item} onDelete={this.onDelete} />
+        <Item key={index} english={item} onDelete={this.onDelete} />
       )
     }.bind(this))
 
@@ -25,9 +25,9 @@ class List extends Component {
   }
 
   // Custom functions
-  onDelete (index) {
+  onDelete (english) {
     const {onDelete} = this.props
-    onDelete(index)
+    onDelete(english)
   }
 }
 

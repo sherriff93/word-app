@@ -5,16 +5,13 @@ import WordForm from '../WordForm/WordForm'
 
 class Test extends Component {
   constructor(props) {
-    super(props)
-    const {items} = this.props
-    this.state = {
-      randomItem: items[Math.floor(Math.random()*items.length)]
-    }
+    super()
     this.onSubmit = this.onSubmit.bind(this)
   }
 
   render() {
-    const {english} = this.state.randomItem
+    const {english} = this.props
+
     return (
       <div>
         <p>{english}</p>
@@ -25,11 +22,11 @@ class Test extends Component {
 
   // Custom Functions
   onSubmit (guess) {
-    const {spanish} = this.state.randomItem
-    if (guess.toLowerCase() == spanish.toLowerCase()) {
+    const {english, spanish} = this.props
+    if (guess.toLowerCase() === spanish.toLowerCase()) {
       alert('Correct')
     }
-    this.setState(this.state)
+    this.props.onSubmit(english)
   }
 }
 

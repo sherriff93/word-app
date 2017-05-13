@@ -28,9 +28,9 @@ class DictionaryView extends Component {
     onSubmit(value)
   }
 
-  onDelete (index) {
+  onDelete (english) {
     const {onDelete} = this.props
-    onDelete(index)
+    onDelete(english)
   }
 }
 

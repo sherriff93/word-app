@@ -8,7 +8,7 @@ class Item extends Component {
   }
 
   render () {
-    const {english} = this.props.item
+    const {english} = this.props
     return (
       <li>
         <div className="item">
@@ -21,8 +21,8 @@ class Item extends Component {
 
   // Custom functions
   handleDelete () {
-    const {item, onDelete} = this.props
-    onDelete(item.index)
+    const {english, onDelete} = this.props
+    onDelete(english)
   }
 }
 
