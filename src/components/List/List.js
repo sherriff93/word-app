@@ -10,8 +10,8 @@ class List extends Component {
   }
 
   render () {
-    var {items} = this.props
-    items = Object.keys(items).map(function (item, index) {
+    const {items} = this.props
+    let itemsHtml = Object.keys(items).map(function (item, index) {
       return (
         <Item key={index} english={item} onDelete={this.onDelete} />
       )
@@ -19,7 +19,7 @@ class List extends Component {
 
     return (
       <div id="item-list">
-        <ul>{items}</ul>
+        <ul>{itemsHtml}</ul>
       </div>
     )
   }

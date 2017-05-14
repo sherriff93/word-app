@@ -3,21 +3,34 @@ import './WordForm.css'
 
 class WordForm extends Component {
   constructor(props) {
-    super()
-    this.state = {value: ''}
+    super(props)
+    const {labels} = this.props
+    const values = {}
+    for (let i = 0; i < labels.length; i ++) {
+      values[labels[i]] = ''
+    }
+    this.state = {values}
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   render() {
-    const {label} = this.props
+    const {label} = this.props,
+      {values} = this.state
+
+    let valuesHtml = Object.keys(values).map(function (fieldName, index) {
+      return (
+        <label key={index}>
+          {fieldName}
+          <input type="text" name={fieldName} value={values[fieldName]} onChange={this.handleChange} />
+        </label>
+      )
+    }.bind(this))
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            {label}
-            <input type="text" id="word-input" value={this.state.value} onChange={this.handleChange} />
-          </label>
+        <form id="form" onSubmit={this.handleSubmit}>
+          {valuesHtml}
           <input type="submit" value="Submit" />
         </form>
       </div>
@@ -26,15 +39,25 @@ class WordForm extends Component {
 
   // Custom functions
   handleChange(e) {
-    this.setState({value: e.target.value})
+    let {values} = this.state
+    values[e.target.name] = e.target.value
+    this.setState({values})
   }
 
   handleSubmit(e) {
-    var targetValue = this.state.value
-    if (targetValue) {
-      this.props.onSubmit(targetValue)
-      this.setState({value: ''})
-      document.getElementById("word-input").focus()
+    let {values} = this.state,
+      newValues = {},
+      hasBlankField = false
+
+    Object.keys(values).map(function (fieldName, index) {
+      if (values[fieldName]) { newValues[fieldName] = '' }
+      else { hasBlankField = true }
+    })
+
+    if (!hasBlankField) {
+      this.props.onSubmit(values)
+      this.setState({newValues})
+      document.getElementById('form').firstChild.focus()
     }
     e.preventDefault()
   }
