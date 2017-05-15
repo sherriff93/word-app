@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import './App.css';
+import './App.css'
 
 import Home from './components/Home/Home'
 import Dictionary from './components/Dictionary/Dictionary'
@@ -21,17 +21,17 @@ class App extends Component {
         {
           path: '/harry-potter',
           name: 'Harry Potter',
-          main: () => (<DictionaryMain name="Harry Potter" />)
+          main: ({match}) => (<DictionaryMain name="Harry Potter" match={match} />)
         },
         {
           path: '/things-ive-heard',
           name: 'Things I\'ve heard',
-          main: () => (<DictionaryMain name="Things I've heard" />)
+          main: ({match}) => (<DictionaryMain name="Things I've heard" match={match} />)
         },
         {
           path: '/woofing',
           name: 'Woofing',
-          main: () => (<DictionaryMain name='Woofing' />)
+          main: ({match}) => (<DictionaryMain name='Woofing' match={match} />)
         }
       ]
     }

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './DictionaryMain.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import './DictionaryMain.css'
 
 import DictionaryView from '../DictionaryView/DictionaryView'
 import TestWrapper from '../TestWrapper/TestWrapper'
@@ -22,14 +23,45 @@ class DictionaryMain extends Component {
   }
 
   render() {
-    const {name} = this.props
-    const {items, mode} = this.state
+    console.log()
+    const {name, match} = this.props,
+      {items, mode} = this.state,
+      dictMainPath = match.path,
+      testPath = dictMainPath + '/test',
+      routes = [
+      {
+        path: dictMainPath,
+        exact: true,
+        component: () => (
+          <DictionaryView
+            name={name}
+            items={items}
+            linkPath={testPath}
+            onSubmit={this.dSubmit}
+            onDelete={this.dDelete}
+            changeMode={this.changeMode} />
+        )
+      },
+      {
+        path: testPath,
+        component: () => (
+          <TestWrapper
+            items={items}
+            linkPath={dictMainPath}
+            changeMode={this.changeMode} />
+        )
+      }
+    ]
     return (
       <div>
-        {mode == 'dictionary' &&
-          <DictionaryView name={name} items={items} onSubmit={this.dSubmit} onDelete={this.dDelete} changeMode={this.changeMode} />}
-        {mode == 'test' &&
-          <TestWrapper items={items} changeMode={this.changeMode}/>}
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
       </div>
     )
   }

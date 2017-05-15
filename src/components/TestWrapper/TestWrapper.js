@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './TestWrapper.css';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './TestWrapper.css'
 
 import Test from '../Test/Test'
 
@@ -16,8 +17,9 @@ class TestWrapper extends Component {
   }
 
   render() {
-    const {items, score} = this.state
-    const keys = Object.keys(items),
+    const {linkPath} = this.props,
+      {items, score} = this.state,
+      keys = Object.keys(items),
       inProgress = keys.length > 0
     let english = null,
       spanish = null
@@ -29,9 +31,7 @@ class TestWrapper extends Component {
 
     return (
       <div>
-        <button onClick={this.changeMode}>
-          Back to Dictionary
-        </button>
+        <Link to={linkPath}>Back to Dictionary</Link>
         {inProgress ? (
           <Test english={english} spanish={spanish} onSubmit={this.onSubmit} />
         ) : (

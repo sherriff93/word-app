@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './DictionaryView.css';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './DictionaryView.css'
 
 import WordForm from '../WordForm/WordForm'
 import List from '../List/List'
@@ -16,15 +17,12 @@ class DictionaryView extends Component {
   }
 
   render() {
-    const {name, items} = this.props
+    const {name, items, linkPath} = this.props
     const {labels} = this.state
-
     return (
       <div>
         {name}
-        <button onClick={this.changeMode}>
-          Test
-        </button>
+        <Link to={linkPath}>Test</Link>
         <WordForm labels={labels} onSubmit={this.onSubmit} />
         <List items={items} onDelete={this.onDelete} />
       </div>

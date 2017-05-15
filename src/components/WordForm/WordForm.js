@@ -49,7 +49,7 @@ class WordForm extends Component {
       newValues = {},
       hasBlankField = false
 
-    Object.keys(values).map(function (fieldName, index) {
+    Object.keys(values).forEach(function (fieldName) {
       if (values[fieldName]) { newValues[fieldName] = '' }
       else { hasBlankField = true }
     })

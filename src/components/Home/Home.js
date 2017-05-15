@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Home.css';
 
-import DictionaryList from '../DictionaryList/DictionaryList'
-
 class Home extends Component {
   render() {
     return (
