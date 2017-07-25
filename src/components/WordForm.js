@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './WordForm.css'
+import '../css/WordForm.css'
 
 class WordForm extends Component {
   constructor(props) {

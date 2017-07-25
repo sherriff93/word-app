@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import './DictionaryMain.css'
+import '../css/DictionaryMain.css'
 
-import DictionaryView from '../DictionaryView/DictionaryView'
-import TestWrapper from '../TestWrapper/TestWrapper'
+import DictionaryView from './DictionaryView'
+import TestWrapper from './TestWrapper'
 
 class DictionaryMain extends Component {
   constructor(props) {
@@ -23,7 +23,6 @@ class DictionaryMain extends Component {
   }
 
   render() {
-    console.log()
     const {name, match} = this.props,
       {items, mode} = this.state,
       dictMainPath = match.path,

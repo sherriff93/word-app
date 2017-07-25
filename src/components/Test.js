@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Test.css';
+import '../css/Test.css';
 
-import WordForm from '../WordForm/WordForm'
+import WordForm from './WordForm'
 
 class Test extends Component {
   constructor(props) {

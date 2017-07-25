@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import './App.css'
+import './css/App.css'
 
-import Home from './components/Home/Home'
-import Dictionary from './components/Dictionary/Dictionary'
-import DictionaryMain from './components/DictionaryMain/DictionaryMain'
+import Home from './components/Home'
+import Dictionary from './components/Dictionary'
+import DictionaryMain from './components/DictionaryMain'
 
 
 class App extends Component {

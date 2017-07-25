@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './DictionaryView.css'
+import '../css/DictionaryView.css'
 
-import WordForm from '../WordForm/WordForm'
-import List from '../List/List'
+import WordForm from './WordForm'
+import List from './List'
 
 class DictionaryView extends Component {
   constructor(props) {

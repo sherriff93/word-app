@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './Dictionary.css'
+import '../css/Dictionary.css'
 
 class Dictionary extends Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './TestWrapper.css'
+import '../css/TestWrapper.css'
 
-import Test from '../Test/Test'
+import Test from './Test'
 
 class TestWrapper extends Component {
   constructor(props) {
