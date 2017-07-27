@@ -1,15 +1,8 @@
-import * as types from '../actions/action-types'
+import * as types from './action-types'
 
-export function setCurrentUser(user) {
+export function addValues(values) {
   return {
-    type: types.SET_CURRENT_USER,
-    user
-  }
-}
-
-export function loginError(error) {
-  return {
-    type: types.LOGIN_ERROR,
-    error
+    type: types.ADD_VALUES,
+    values
   }
 }

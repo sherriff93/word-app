@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/WordForm.css'
 
 class WordForm extends Component {
-  constructor(props) {
+  constructor(props) {//TODO Difference here between constructor and render?
     super(props)
     const {labels} = this.props
     const values = {}
@@ -54,13 +54,31 @@ class WordForm extends Component {
       else { hasBlankField = true }
     })
 
-    if (!hasBlankField) {
+    if (!hasBlankField) {//TODO If the value is already in the list, this must fail
       this.props.onSubmit(values)
-      this.setState({newValues})
+      // this.setState({newValues}) // Not needed as the above component refreshes?
       document.getElementById('form').firstChild.focus()
     }
     e.preventDefault()
   }
 }
 
-export default WordForm
+const mapStateToProps = function(store) {
+    return {
+        isAuthenticated: store.appState.isAuthenticated,
+        menu: store.appState.menu
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        onSubmit: function(values) {
+          dispatch(addValues(values))// This needs to be generalised to addDictionaries, addWords
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(WordForm)

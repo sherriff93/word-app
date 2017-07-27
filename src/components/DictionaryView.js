@@ -8,9 +8,8 @@ import List from './List'
 class DictionaryView extends Component {
   constructor(props) {
     super()
-    this.state = {
-      labels: ['English', 'Spanish']
-    }
+    this.labels = ['English', 'Spanish']
+
     this.onSubmit = this.onSubmit.bind(this)
     this.onDelete = this.onDelete.bind(this)
     this.changeMode = this.changeMode.bind(this)
@@ -18,7 +17,7 @@ class DictionaryView extends Component {
 
   render() {
     const {name, items, linkPath} = this.props
-    const {labels} = this.state
+    const labels = this.labels
     return (
       <div>
         {name}
@@ -32,7 +31,7 @@ class DictionaryView extends Component {
   // Custom Functions
   onSubmit (word) {
     const {onSubmit} = this.props,
-      {labels} = this.state
+      {labels} = this.labels
     onSubmit(word, labels)
   }
 
