@@ -5,8 +5,7 @@ import dictionaryMainReducer from './dictionary-main-reducer'
 
 // Combine Reducers
 var reducers = combineReducers({
-    dictionaryMainState: dictionaryMainReducer,
-
+    dictionaryMainState: dictionaryMainReducer
 })
 
 export default reducers

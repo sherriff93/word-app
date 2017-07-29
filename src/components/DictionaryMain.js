@@ -8,6 +8,7 @@ import TestWrapper from './TestWrapper'
 
 class DictionaryMain extends Component {
   render() {
+  console.log('dictionaryMainRender')
     const {name, match, items} = this.props,
       dictMainPath = match.path,
       testPath = dictMainPath + '/test',
@@ -44,13 +45,6 @@ class DictionaryMain extends Component {
         ))}
       </div>
     )
-  }
-
-  // Custom functions
-  dDelete (english) {
-    let {items} = this.props
-    delete items[english]
-    this.setState({items: items})
   }
 }
 

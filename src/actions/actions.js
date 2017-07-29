@@ -6,3 +6,10 @@ export function addValues(values) {
     values
   }
 }
+
+export function deleteValue(value) {
+  return {
+    type: types.DELETE_VALUE,
+    value
+  }
+}

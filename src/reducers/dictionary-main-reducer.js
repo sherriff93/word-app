@@ -13,9 +13,9 @@ const initialState = {
 const dictionaryMainReducer = function(state = initialState, action) {
     let newState = null
     switch(action.type) {
-        case types.ADD_VALUES:
+        case types.ADD_VALUES: {
             const {values} = action
-            const {items} = state
+            let {items} = state
 
             const keys = Object.keys(values)
 
@@ -30,6 +30,16 @@ const dictionaryMainReducer = function(state = initialState, action) {
                 }
             }
             break
+        }
+        case types.DELETE_VALUE: {
+            let {items} = state
+            delete items[action.value]
+            newState = {
+                ...state,
+                items: {...items}
+            }
+            break
+        }
         default:
             newState = state
     }
