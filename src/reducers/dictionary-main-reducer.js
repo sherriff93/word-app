@@ -1,18 +1,33 @@
 import * as types from '../actions/action-types'
 
 const initialState = {
-    isAuthenticated: false,
-    user: {}
+    items: {
+      'To dare': {
+        spanish: 'Atrever',
+        index: 0
+      }
+    },
+    mode: null
 }
 
-const appReducer = function(state = initialState, action) {
+const dictionaryMainReducer = function(state = initialState, action) {
     let newState = null
     switch(action.type) {
         case types.ADD_VALUES:
+            const {values} = action
+            const {items} = state
+
+            const keys = Object.keys(values)
+
             newState = {
                 ...state,
-                isAuthenticated: action.values,
-                user: action.user,
+                items: {
+                  ...items,
+                  [values[keys[0]]]: {
+                    spanish: values[keys[1]],
+                    index: Date.now()
+                  }
+                }
             }
             break
         default:
@@ -22,4 +37,4 @@ const appReducer = function(state = initialState, action) {
     return newState
 }
 
-export default appReducer
+export default dictionaryMainReducer

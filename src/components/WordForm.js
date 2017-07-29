@@ -1,5 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import '../css/WordForm.css'
+
+import {addValues} from '../actions/actions'
 
 class WordForm extends Component {
   constructor(props) {//TODO Difference here between constructor and render?
@@ -15,8 +18,7 @@ class WordForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   render() {
-    const {label} = this.props,
-      {values} = this.state
+    const {values} = this.state
 
     let valuesHtml = Object.keys(values).map(function (fieldName, index) {
       return (
@@ -29,7 +31,7 @@ class WordForm extends Component {
 
     return (
       <div>
-        <form id="form" onSubmit={this.handleSubmit}>
+        <form id="form" onSubmit={(e) => this.handleSubmit(e)}>
           {valuesHtml}
           <input type="submit" value="Submit" />
         </form>
@@ -45,6 +47,7 @@ class WordForm extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault()
     let {values} = this.state,
       newValues = {},
       hasBlankField = false
@@ -59,26 +62,25 @@ class WordForm extends Component {
       // this.setState({newValues}) // Not needed as the above component refreshes?
       document.getElementById('form').firstChild.focus()
     }
-    e.preventDefault()
   }
 }
 
-const mapStateToProps = function(store) {
-    return {
-        isAuthenticated: store.appState.isAuthenticated,
-        menu: store.appState.menu
-    }
-}
+// const mapStateToProps = function(store) {
+//     return {
+//         isAuthenticated: store.appState.isAuthenticated,
+//         menu: store.appState.menu
+//     }
+// }
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        onSubmit: function(values) {
-          dispatch(addValues(values))// This needs to be generalised to addDictionaries, addWords
+        onSubmit: (values) => {
+          dispatch(addValues(values))// TODO This needs to be generalised to addDictionaries, addWords
         }
     }
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(WordForm)

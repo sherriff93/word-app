@@ -1,30 +1,14 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 import '../css/DictionaryMain.css'
 
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
 
 class DictionaryMain extends Component {
-  constructor(props) {
-    super()
-    this.state = {
-      items: {
-        'To dare': {
-          spanish: 'Atrever',
-          index: 0
-        }
-      },
-      mode: 'dictionary'
-    }
-    this.dSubmit = this.dSubmit.bind(this)
-    this.dDelete = this.dDelete.bind(this)
-    this.changeMode = this.changeMode.bind(this)
-  }
-
   render() {
-    const {name, match} = this.props,
-      {items, mode} = this.state,
+    const {name, match, items} = this.props,
       dictMainPath = match.path,
       testPath = dictMainPath + '/test',
       routes = [
@@ -35,10 +19,7 @@ class DictionaryMain extends Component {
           <DictionaryView
             name={name}
             items={items}
-            linkPath={testPath}
-            onSubmit={this.dSubmit}
-            onDelete={this.dDelete}
-            changeMode={this.changeMode} />
+            linkPath={testPath} />
         )
       },
       {
@@ -65,27 +46,20 @@ class DictionaryMain extends Component {
     )
   }
 
-  // Custom Functions
-  dSubmit(word, labels) {
-    let {items} = this.state
-    items[word[labels[0]]] = {
-      spanish: word[labels[1]],
-      index: Date.now()
-    }
-    this.setState({
-      items: items
-    })
-  }
-
+  // Custom functions
   dDelete (english) {
-    let {items} = this.state
+    let {items} = this.props
     delete items[english]
     this.setState({items: items})
   }
-
-  changeMode (mode) {
-    this.setState({mode})
-  }
 }
 
-export default DictionaryMain
+const mapStateToProps = function(store) {
+    return {
+        items: store.dictionaryMainState.items
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(DictionaryMain)

@@ -52,7 +52,7 @@ class TestWrapper extends Component {
   changeMode () {
     const {changeMode} = this.props
     changeMode('dictionary')
-  }
+  }// TODO get rid
 }
 
 export default TestWrapper;
