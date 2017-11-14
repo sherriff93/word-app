@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 import '../css/WordForm.css'
-
-import {addValues} from '../actions/actions'
 
 class WordForm extends Component {
   constructor(props) {//TODO Difference here between constructor and render?
     super(props)
     const {labels} = this.props
+
     const values = {}
     for (let i = 0; i < labels.length; i ++) {
       values[labels[i]] = ''
@@ -65,22 +64,8 @@ class WordForm extends Component {
   }
 }
 
-// const mapStateToProps = function(store) {
-//     return {
-//         isAuthenticated: store.appState.isAuthenticated,
-//         menu: store.appState.menu
-//     }
-// }
-
-const mapDispatchToProps = function(dispatch) {
-    return {
-        onSubmit: (values) => {
-          dispatch(addValues(values))// TODO This needs to be generalised to addDictionaries, addWords
-        }
-    }
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(WordForm)
+export default WordForm
+// export default connect(
+//     null,
+//     mapDispatchToProps
+// )(WordForm)

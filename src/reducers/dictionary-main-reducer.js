@@ -7,7 +7,7 @@ const initialState = {
         index: 0
       }
     },
-    mode: null
+    mode: null//TODO remove
 }
 
 const dictionaryMainReducer = function(state = initialState, action) {
@@ -31,7 +31,7 @@ const dictionaryMainReducer = function(state = initialState, action) {
             }
             break
         }
-        case types.DELETE_VALUE: {
+        case types.DELETE_WORD: {
             let {items} = state
             delete items[action.value]
             newState = {

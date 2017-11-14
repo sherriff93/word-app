@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import '../css/Test.css';
+
+import {questionAnswered} from '../actions/actions'
 
 import WordForm from './WordForm'
 
 class Test extends Component {
   constructor(props) {
     super()
-    this.state = {
-      label: 'English'
-    }
+    this.labels = ['English'] //TODO change to spanish
     this.onSubmit = this.onSubmit.bind(this)
   }
 
   render() {
+    console.log('test rerender')
     const {english} = this.props,
-      {label} = this.state,
-      labels = [label]
+      {labels} = this
 
     return (
       <div>
@@ -28,10 +29,10 @@ class Test extends Component {
   // Custom Functions
   onSubmit (guess) {
     const {english, spanish} = this.props,
-      {label} = this.state
+      {labels} = this
 
     let isCorrect = 0
-    if (guess[label].toLowerCase() === spanish.toLowerCase()) {
+    if (guess[labels[0]].toLowerCase() === spanish.toLowerCase()) {
       alert('Correct')
       isCorrect = 1
     }
@@ -39,4 +40,15 @@ class Test extends Component {
   }
 }
 
-export default Test;
+const mapDispatchToProps = function(dispatch) {
+    return {
+        onSubmit: (english, isCorrect) => {
+          dispatch(questionAnswered(english, isCorrect))
+        }
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Test)

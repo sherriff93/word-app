@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Item.css'
 
-import {deleteValue} from '../actions/actions'
+import {deleteWord} from '../actions/actions'
 
 class Item extends Component {
   render () {
@@ -21,7 +21,7 @@ class Item extends Component {
 const mapDispatchToProps = function(dispatch) {
     return {
         onDelete: (value) => {
-          dispatch(deleteValue(value))// TODO This needs to be generalised to deleteDictionaries, deleteWords
+          dispatch(deleteWord(value))
         }
     }
 }

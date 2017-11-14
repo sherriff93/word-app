@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../css/TestWrapper.css'
+
+import {setItems} from '../actions/actions'
 
 import Test from './Test'
 
 class TestWrapper extends Component {
   constructor(props) {
     super(props)
-    const {items} = this.props
-    this.state = {
-      items: {...items},
-      score: 0
-    }
-    this.onSubmit = this.onSubmit.bind(this)
+    const {initialItems} = props
+    this.props.setItems(initialItems)
     this.changeMode = this.changeMode.bind(this)
   }
 
   render() {
-    const {linkPath} = this.props,
-      {items, score} = this.state,
+    console.log('wrapper rerender')
+    console.log(this.props.items)
+    const {linkPath, items, score} = this.props,
       keys = Object.keys(items),
       inProgress = keys.length > 0
     let english = null,
@@ -33,20 +33,12 @@ class TestWrapper extends Component {
       <div>
         <Link to={linkPath}>Back to Dictionary</Link>
         {inProgress ? (
-          <Test english={english} spanish={spanish} onSubmit={this.onSubmit} />
+          <Test english={english} spanish={spanish} />
         ) : (
           <p>Test Complete! You got {score} correct</p>
         )}
       </div>
     )
-  }
-
-  //Custom functions
-  onSubmit(english, isCorrect) {
-    let {items, score} = this.state
-    delete items[english]
-    score += isCorrect
-    this.setState({items, score})
   }
 
   changeMode () {
@@ -55,4 +47,20 @@ class TestWrapper extends Component {
   }// TODO get rid
 }
 
-export default TestWrapper;
+const mapStateToProps = function(store, ownProps) {
+    return {
+        items: store.testWrapperState.items,
+        score: store.testWrapperState.score
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        setItems: (items) => dispatch(setItems(items))
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TestWrapper)

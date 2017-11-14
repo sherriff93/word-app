@@ -1,30 +1,34 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../css/Dictionary.css'
 
-class Dictionary extends Component {
-  constructor(props) {
-    super()
-    this.handleDelete = this.handleDelete.bind(this);
-  }
+import {deleteDictionary} from '../actions/actions'
 
+class Dictionary extends Component {
   render () {
-    const {path, name} = this.props.dictionary
+    const {dictionary, onDelete} = this.props
+    const {path, name} = dictionary
     return (
       <li>
         <div className="dictionary">
           <span className="name"><Link to={path}>{name}</Link></span>
-          <span className="delete" onClick={this.handleDelete}> x </span>
+          <span className="delete" onClick={() => onDelete(name)}> x </span>
         </div>
       </li>
     )
   }
-
-  // Custom functions
-  handleDelete () {
-    const {dictionary, onDelete} = this.props
-    onDelete(dictionary)
-  }
 }
 
-export default Dictionary;
+const mapDispatchToProps = function(dispatch) {
+    return {
+        onDelete: (value) => {
+          dispatch(deleteDictionary(value))
+        }
+    }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Dictionary)

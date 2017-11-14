@@ -7,9 +7,30 @@ export function addValues(values) {
   }
 }
 
-export function deleteValue(value) {
+export function deleteWord(value) {
   return {
-    type: types.DELETE_VALUE,
+    type: types.DELETE_WORD,
     value
+  }
+}
+
+export function deleteDictionary(value) {
+  return {
+    type: types.DELETE_DICTIONARY,
+    value
+  }
+}
+
+export function questionAnswered(english, isCorrect) {
+  return {
+    type: types.QUESTION_ANSWERED,
+    english,
+    isCorrect
+  }
+}
+export function setItems(items) {
+  return {
+    type: types.SET_ITEMS,
+    items
   }
 }
