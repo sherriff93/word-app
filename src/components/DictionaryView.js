@@ -12,19 +12,30 @@ class DictionaryView extends Component {
   constructor() {
     super()
     this.labels = ['English', 'Spanish']
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   render() {
-    const {name, items, linkPath, onSubmit} = this.props
+    console.log('view rerender')
+    const {name, items, linkPath} = this.props
     const {labels} = this
     return (
       <div>
         {name}
         <Link to={linkPath}>Test</Link>
-        <WordForm labels={labels} onSubmit={onSubmit} />
+        <WordForm labels={labels} onSubmit={this.onSubmit} />
         <List items={items} />
       </div>
     )
+  }
+
+  // Custom Functions
+  onSubmit (values) {
+    const {items, onSubmit} = this.props
+    if (items.hasOwnProperty(values.English) && confirm("Overrite existing?") === false) {// ASK is using the key as a label bad?
+      return
+    }
+    onSubmit(values)
   }
 }
 

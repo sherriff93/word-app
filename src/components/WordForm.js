@@ -4,6 +4,7 @@ import '../css/WordForm.css'
 
 class WordForm extends Component {
   constructor(props) {//TODO Difference here between constructor and render?
+    console.log('wordform constructor')
     super(props)
     const {labels} = this.props
 
@@ -17,6 +18,7 @@ class WordForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   render() {
+    console.log('wordform rerender')
     const {values} = this.state
 
     let valuesHtml = Object.keys(values).map(function (fieldName, index) {
@@ -58,7 +60,7 @@ class WordForm extends Component {
 
     if (!hasBlankField) {//TODO If the value is already in the list, this must fail
       this.props.onSubmit(values)
-      // this.setState({newValues}) // Not needed as the above component refreshes?
+      // this.setState({newValues}) // TODO Bug causing state to persist with and without this line (shouldn't persist for either i.e. this also shouldnt be needed)
       document.getElementById('form').firstChild.focus()
     }
   }

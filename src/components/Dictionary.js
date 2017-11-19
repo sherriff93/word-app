@@ -7,6 +7,7 @@ import {deleteDictionary} from '../actions/actions'
 
 class Dictionary extends Component {
   render () {
+    console.log('dictionary rerender')
     const {dictionary, onDelete} = this.props
     const {path, name} = dictionary
     return (

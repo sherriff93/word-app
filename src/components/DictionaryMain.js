@@ -8,6 +8,7 @@ import TestWrapper from './TestWrapper'
 
 class DictionaryMain extends Component {
   render() {
+    console.log('main rerender')
     const {name, match, items} = this.props,
       dictMainPath = match.path,
       testPath = dictMainPath + '/test',

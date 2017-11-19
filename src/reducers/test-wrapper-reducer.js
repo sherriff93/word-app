@@ -13,11 +13,10 @@ const testWrapperReducer = function(state = initialState, action) {
             let {items, score} = state
             let newItems = {...items}
             delete newItems[action.english]
-            score += action.isCorrect
             newState = {
               ...state,
-              newItems,
-              score
+              items: newItems,
+              score: score + action.isCorrect
             }
             break
         }

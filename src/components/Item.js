@@ -6,6 +6,7 @@ import {deleteWord} from '../actions/actions'
 
 class Item extends Component {
   render () {
+    console.log('item rerender')
     const {english, onDelete} = this.props
     return (
       <li>
