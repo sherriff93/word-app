@@ -39,6 +39,12 @@ class DictionaryView extends Component {
   }
 }
 
+const mapStateToProps = function(store, ownProps) {
+    return {
+        items: store.dictionaryMainState.items
+    }
+}
+
 const mapDispatchToProps = function(dispatch) {
     return {
         onSubmit: (values) => {
@@ -48,6 +54,6 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(DictionaryView)

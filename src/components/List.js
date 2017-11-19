@@ -10,7 +10,7 @@ class List extends Component {
 
   render () {
     console.log('list rerender')
-    const {items} = this.props//TODO Its inconsistent to have this as props and the dictionaries in DictionaryList as state
+    const {items} = this.props
     let itemsHtml = Object.keys(items).map(function (item, index) {
       return (
         <Item key={index} english={item} />
