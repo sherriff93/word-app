@@ -13,7 +13,7 @@ const initialState = {
 const dictionaryMainReducer = function(state = initialState, action) {
     let newState = null
     switch(action.type) {
-        case types.ADD_VALUES: {
+        case types.ADD_WORD: {
             const {values} = action
             let {items} = state
 

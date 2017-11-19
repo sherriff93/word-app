@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../css/DictionaryView.css'
 
-import {addValues} from '../actions/actions'
+import {addWord} from '../actions/actions'
 
 import WordForm from './WordForm'
 import List from './List'
@@ -42,7 +42,7 @@ class DictionaryView extends Component {
 const mapDispatchToProps = function(dispatch) {
     return {
         onSubmit: (values) => {
-          dispatch(addValues(values))// TODO This needs to be generalised to addDictionaries, addWords
+          dispatch(addWord(values))// TODO This needs to be generalised to addDictionaries, addWords
         }
     }
 }

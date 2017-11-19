@@ -5,8 +5,15 @@ import './css/App.css'
 
 import Dictionary from './components/Dictionary'
 
+import {addDictionary} from './actions/actions'
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.onClick = this.onClick.bind(this)
+  }
+
   render() {
     const {dictionaries} = this.props
     return (
@@ -22,6 +29,7 @@ class App extends Component {
                 <Dictionary key={index} dictionary={dictionary} onDelete={ this.onDelete } />
               ))}
             </ul>
+            <span className="delete" onClick={this.onClick}> Add Dictionary </span>
           </div>
 
           <div style={{ flex: 1, padding: '10px' }}>
@@ -38,6 +46,13 @@ class App extends Component {
       </Router>
     )
   }
+
+    // Custom Functions
+    onClick () {
+      const {onClick} = this.props
+        const toAdd = prompt()
+        onClick(toAdd)
+    }
 }
 
 const mapStateToProps = function(store) {
@@ -46,6 +61,15 @@ const mapStateToProps = function(store) {
     }
 }
 
+const mapDispatchToProps = function(dispatch) {
+    return {
+        onClick: (value) => {
+          dispatch(addDictionary(value))
+        }
+    }
+}
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);

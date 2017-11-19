@@ -1,8 +1,8 @@
 import * as types from './action-types'
 
-export function addValues(values) {
+export function addWord(values) {
   return {
-    type: types.ADD_VALUES,
+    type: types.ADD_WORD,
     values
   }
 }
@@ -10,6 +10,13 @@ export function addValues(values) {
 export function deleteWord(value) {
   return {
     type: types.DELETE_WORD,
+    value
+  }
+}
+
+export function addDictionary(value) {
+  return {
+    type: types.ADD_DICTIONARY,
     value
   }
 }

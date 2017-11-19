@@ -32,9 +32,21 @@ const initialState = {
 
 const AppReducer = function(state = initialState, action) {
     let newState = null
+    let {dictionaries} = state
     switch(action.type) {
+        case types.ADD_DICTIONARY:
+            const {value} = action
+            const valueCapped = value.charAt(0).toUpperCase() + value.slice(1)
+            newState = {
+                ...state,
+                dictionaries: [...dictionaries, {
+                    path: '/' + encodeURI(value),
+                    name: valueCapped,// TODO need to format the value (caps first here, no space above) and caps below
+                    main: ({match}) => (<DictionaryMain name={valueCapped} match={match} />)
+                }]
+            }
+            break
         case types.DELETE_DICTIONARY:
-            let {dictionaries} = state
             dictionaries = dictionaries.filter(function(dictionary, index) {
               return action.value !== dictionary.name
             })
@@ -43,7 +55,6 @@ const AppReducer = function(state = initialState, action) {
         default:
             newState = state
     }
-
     return newState
 }
 
