@@ -9,7 +9,7 @@ import WordForm from './WordForm'
 class Test extends Component {
   constructor(props) {
     super()
-    this.labels = ['English'] //TODO change to spanish
+    this.labels = ['Spanish']
     this.onSubmit = this.onSubmit.bind(this)
   }
 

@@ -16,17 +16,13 @@ class DictionaryMain extends Component {
         path: dictMainPath,
         exact: true,
         component: () => (
-          <DictionaryView
-            name={name}
-            linkPath={testPath} />
+          <DictionaryView name={name} linkPath={testPath} />
         )
       },
       {
         path: testPath,
         component: () => (
-          <TestWrapper
-            linkPath={dictMainPath}
-            changeMode={this.changeMode} />
+          <TestWrapper linkPath={dictMainPath} />
         )
       }
     ]

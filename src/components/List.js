@@ -11,9 +11,9 @@ class List extends Component {
   render () {
     console.log('list rerender')
     const {items} = this.props
-    let itemsHtml = Object.keys(items).map(function (item, index) {
+    let itemsHtml = items.map(function (item, index) {
       return (
-        <Item key={index} english={item} />
+        <Item key={index} english={item.english} />
       )
     })
 

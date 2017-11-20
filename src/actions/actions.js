@@ -35,9 +35,16 @@ export function questionAnswered(english, isCorrect) {
     isCorrect
   }
 }
+
 export function setItems(items) {
   return {
     type: types.SET_ITEMS,
     items
+  }
+}
+
+export function resetScore() {
+  return {
+    type: types.RESET_SCORE
   }
 }

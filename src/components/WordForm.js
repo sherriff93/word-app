@@ -59,8 +59,8 @@ class WordForm extends Component {
     })
 
     if (!hasBlankField) {//TODO If the value is already in the list, this must fail
+      this.setState({values: newValues})
       this.props.onSubmit(values)
-      // this.setState({newValues}) // TODO Bug causing state to persist with and without this line (shouldn't persist for either i.e. this also shouldnt be needed)
       document.getElementById('form').firstChild.focus()
     }
   }
