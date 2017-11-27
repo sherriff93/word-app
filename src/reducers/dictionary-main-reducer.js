@@ -5,6 +5,7 @@ const initialState = {
       {
         english: 'To dare',
         spanish: 'Atrever',
+        dictionary: 'Harry Potter',
         index: 0
       }
     ],
@@ -16,7 +17,7 @@ const dictionaryMainReducer = function(state = initialState, action) {
     switch(action.type) {
         case types.ADD_WORD: {
             const {items} = state
-            const {values} = action
+            const {values, name} = action
             let newItems // ask: Why does this still exist?
             let existingItemIndex = items.findIndex(word => word.english === values.English)
             if (existingItemIndex !== -1) {
@@ -32,6 +33,7 @@ const dictionaryMainReducer = function(state = initialState, action) {
                 {
                   english: values.English,
                   spanish: values.Spanish,
+                  dictionary: name,
                   index: Date.now()
                 }
               ]

@@ -1,9 +1,10 @@
 import * as types from './action-types'
 
-export function addWord(values) {
+export function addWord(values, name) {
   return {
     type: types.ADD_WORD,
-    values
+    values,
+    name
   }
 }
 

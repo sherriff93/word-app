@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 import '../css/DictionaryMain.css'
 
@@ -8,21 +9,22 @@ import TestWrapper from './TestWrapper'
 class DictionaryMain extends Component {
   render() {
     console.log('main rerender')
-    const {name, match} = this.props,
+    const {name, match, items} = this.props,
       dictMainPath = match.path,
       testPath = dictMainPath + '/test',
+      itemsFiltered = items.filter(item => item.dictionary === name),
       routes = [
       {
         path: dictMainPath,
         exact: true,
         component: () => (
-          <DictionaryView name={name} linkPath={testPath} />
+          <DictionaryView name={name} items={itemsFiltered} linkPath={testPath} />
         )
       },
       {
         path: testPath,
         component: () => (
-          <TestWrapper linkPath={dictMainPath} />
+          <TestWrapper initialItems={itemsFiltered} linkPath={dictMainPath} />
         )
       }
     ]
@@ -41,4 +43,12 @@ class DictionaryMain extends Component {
   }
 }
 
-export default DictionaryMain
+const mapStateToProps = function(store, ownProps) {
+    return {
+        items: store.dictionaryMainState.items
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(DictionaryMain)

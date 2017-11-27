@@ -22,28 +22,22 @@ class DictionaryView extends Component {
       <div>
         {name}
         <Link to={linkPath}>Test</Link>
-        <WordForm labels={labels} onSubmit={onSubmit} />
+        <WordForm labels={labels} onSubmit={(values) => onSubmit(values, name)} />
         <List items={items} />
       </div>
     )
   }
 }
 
-const mapStateToProps = function(store, ownProps) {
-    return {
-        items: store.dictionaryMainState.items
-    }
-}
-
 const mapDispatchToProps = function(dispatch) {
     return {
-        onSubmit: (values) => {
-          dispatch(addWord(values))// TODO This needs to be generalised to addDictionaries, addWords
+        onSubmit: (values, name) => {
+          dispatch(addWord(values, name))// TODO This needs to be generalised to addDictionaries, addWords
         }
     }
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(DictionaryView)

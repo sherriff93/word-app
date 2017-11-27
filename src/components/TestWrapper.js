@@ -44,7 +44,6 @@ class TestWrapper extends Component {
 
 const mapStateToProps = function(store, ownProps) {
     return {
-        initialItems: store.dictionaryMainState.items,
         items: store.testWrapperState.items,
         score: store.testWrapperState.score
     }
