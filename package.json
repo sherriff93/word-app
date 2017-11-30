@@ -1,24 +1,25 @@
 {
-  "name": "words-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.1",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
-  },
-  "devDependencies": {
-    "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
-    "react-scripts": "0.9.5"
-  },
+  "name": "rest-api-playlist",
+  "version": "1.0.0",
+  "description": "Course files for the REST API tutorial series on The Net Ninja Youtube channel",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamshaunjp/rest-api-playlist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamshaunjp/rest-api-playlist/issues"
+  },
+  "homepage": "https://github.com/iamshaunjp/rest-api-playlist#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4"
   }
 }
