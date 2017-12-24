@@ -13,6 +13,7 @@ import {fetchFail} from '../actions/actions'
 class DictionaryMain extends Component {
 
   componentDidMount(){
+      console.log(": ");console.log('did mount')//IS_DEBUG
     this.props.testApi()
   }
 
@@ -64,10 +65,10 @@ const mapDispatchToProps = function(dispatch) {
     return {
         testApi: () => {
         	dispatch(fetchData())
-          fetch('/api/ninjas')
+          fetch('/api/words')
             .then(response => response.json())
             .then(response => {
-            	if(response.status === 200){
+              if(response.status === 200){
               	dispatch(fetchSuccess(response))
               }
               else{
