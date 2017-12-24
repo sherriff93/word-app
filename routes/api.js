@@ -11,8 +11,10 @@ router.get('/words', function(req, res, next){
 
 // add a new word to the db
 router.post('/words', function(req, res, next){
-    Word.create(req.body).then(function(word){
-        res.send(word);
+    Word.create(req.body).then(function(){
+        Word.find().then(function(words){
+            res.send(words);
+        });
     }).catch(next);
 });
 

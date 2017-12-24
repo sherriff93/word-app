@@ -6,52 +6,51 @@ import '../css/DictionaryMain.css'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
 
-import {fetchData} from '../actions/actions'
-import {fetchSuccess} from '../actions/actions'
-import {fetchFail} from '../actions/actions'
+import {fetchWordsStart} from '../actions/actions'
+import {fetchWordsSuccess} from '../actions/actions'
+import {fetchWordsFail} from '../actions/actions'
 
 class DictionaryMain extends Component {
-
-  componentDidMount(){
-      console.log(": ");console.log('did mount')//IS_DEBUG
-    this.props.testApi()
-  }
-
-  render() {
-    console.log('main rerender')
-    console.log(this.props.test)
-    const {name, match, items} = this.props,
-      dictMainPath = match.path,
-      testPath = dictMainPath + '/test',
-      itemsFiltered = items.filter(item => item.dictionary === name),
-      routes = [
-      {
-        path: dictMainPath,
-        exact: true,
-        component: () => (
-          <DictionaryView name={name} items={itemsFiltered} linkPath={testPath} />
+    
+    componentDidMount(){
+        this.props.fetchWords()
+    }
+    
+    render() {
+        console.log('main rerender') // TODO Get rid of console.logs without IS_DEBUG
+        console.log(this.props.test)
+        const {name, match, items} = this.props,
+        dictMainPath = match.path,
+        testPath = dictMainPath + '/test',
+        itemsFiltered = items.filter(item => item.dictionary === name),
+        routes = [
+            {
+                path: dictMainPath,
+                exact: true,
+                component: () => (
+                    <DictionaryView name={name} items={itemsFiltered} linkPath={testPath} />
+                )
+            },
+            {
+                path: testPath,
+                component: () => (
+                    <TestWrapper initialItems={itemsFiltered} linkPath={dictMainPath} />
+                )
+            }
+        ]
+        return (
+            <div>
+                {routes.map((route, index) => (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.component}
+                    />
+                ))}
+            </div>
         )
-      },
-      {
-        path: testPath,
-        component: () => (
-          <TestWrapper initialItems={itemsFiltered} linkPath={dictMainPath} />
-        )
-      }
-    ]
-    return (
-      <div>
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={route.exact}
-            component={route.component}
-          />
-        ))}
-      </div>
-    )
-  }
+    }
 }
 
 const mapStateToProps = function(store, ownProps) {
@@ -61,20 +60,21 @@ const mapStateToProps = function(store, ownProps) {
     }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) { // TODO Could put the fetch into a function
     return {
-        testApi: () => {
-        	dispatch(fetchData())
-          fetch('/api/words')
-            .then(response => response.json())
+        fetchWords: () => {
+            dispatch(fetchWordsStart())
+            fetch('/api/words')
             .then(response => {
-              if(response.status === 200){
-              	dispatch(fetchSuccess(response))
-              }
-              else{
-              	dispatch(fetchFail())
-              }
+                if(response.status === 200){
+                    response.json() // TODO What happens if this fails?
+                    .then(json => dispatch(fetchWordsSuccess(json)))
+                }
+                else{
+                    dispatch(fetchWordsFail())
+                }
             })
+            
         }
     }
 }
