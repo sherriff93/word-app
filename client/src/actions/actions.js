@@ -49,3 +49,22 @@ export function resetScore() {
     type: types.RESET_SCORE
   }
 }
+
+export function fetchData() {
+  return {
+    type: types.FETCH_DATA
+  }
+}
+
+export function fetchSuccess(data) {
+  return {
+    type: types.FETCH_SUCCESS,
+    data
+  }
+}
+
+export function fetchFail() {
+  return {
+    type: types.FETCH_FAIL
+  }
+}

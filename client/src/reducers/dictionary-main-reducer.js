@@ -9,7 +9,7 @@ const initialState = {
         index: 0
       }
     ],
-    mode: null//TODO remove
+    test: 'none'
 }
 
 const dictionaryMainReducer = function(state = initialState, action) {
@@ -54,6 +54,15 @@ const dictionaryMainReducer = function(state = initialState, action) {
             }
             break
         }
+        case types.FETCH_DATA:
+            newState = state
+            break
+        case types.FETCH_SUCCESS:
+            newState = {...state, test: action.data}
+            break
+        case types.FETCH_FAIL:
+            newState = {...state, test: 'fail'}
+            break
         default:
             newState = state
     }

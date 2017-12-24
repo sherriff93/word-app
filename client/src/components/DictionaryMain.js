@@ -6,9 +6,19 @@ import '../css/DictionaryMain.css'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
 
+import {fetchData} from '../actions/actions'
+import {fetchSuccess} from '../actions/actions'
+import {fetchFail} from '../actions/actions'
+
 class DictionaryMain extends Component {
+
+  componentDidMount(){
+    this.props.testApi()
+  }
+
   render() {
     console.log('main rerender')
+    console.log(this.props.test)
     const {name, match, items} = this.props,
       dictMainPath = match.path,
       testPath = dictMainPath + '/test',
@@ -45,10 +55,30 @@ class DictionaryMain extends Component {
 
 const mapStateToProps = function(store, ownProps) {
     return {
-        items: store.dictionaryMainState.items
+        items: store.dictionaryMainState.items,
+        test: store.dictionaryMainState.test
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        testApi: () => {
+        	dispatch(fetchData())
+          fetch('/api/ninjas')
+            .then(response => response.json())
+            .then(response => {
+            	if(response.status === 200){
+              	dispatch(fetchSuccess(response))
+              }
+              else{
+              	dispatch(fetchFail())
+              }
+            })
+        }
     }
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(DictionaryMain)
