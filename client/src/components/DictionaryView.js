@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../css/DictionaryView.css'
 
-import {fetchWordsStart} from '../actions/actions'
-import {fetchWordsSuccess} from '../actions/actions'
-import {fetchWordsFail} from '../actions/actions'
-
 import WordForm from './WordForm'
 import List from './List'
+
+import {updateWord} from '../lib'
+import {insertWord} from '../lib'
 
 class DictionaryView extends Component {
     constructor() {
@@ -44,57 +43,12 @@ const mapDispatchToProps = function(dispatch) {
             // let newItems // ask: Why does this still exist?
             let existingItem = items.find(word => word.english === values.English)
             if (existingItem !== undefined) {
-                
                 if (confirm("Overrite existing?") !== false) {// ASK is using the key as a label bad?
-                    dispatch(fetchWordsStart())
-                    fetch('/api/words/' + existingItem._id, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            english: values.English,
-                            spanish: values.Spanish,
-                            dictionary: name,
-                            index: Date.now() // TODO Replace index with id
-                        })
-                    })
-                    .then(response => {
-                        if(response.status === 200){
-                            response.json() // TODO What happens if this fails?
-                            .then(json => dispatch(fetchWordsSuccess(json)))
-                        }
-                        else{
-                            dispatch(fetchWordsFail())
-                        }
-                    })
+                    updateWord(existingItem, values, name, dispatch)
                 }
             } else {
-                dispatch(fetchWordsStart())
-                fetch('/api/words', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        english: values.English,
-                        spanish: values.Spanish,
-                        dictionary: name,
-                        index: Date.now()
-                    })
-                })
-                .then(response => {
-                    if(response.status === 200){
-                        response.json() // TODO What happens if this fails?
-                        .then(json => dispatch(fetchWordsSuccess(json)))
-                    }
-                    else{
-                        dispatch(fetchWordsFail())
-                    }
-                })
+                insertWord(values, name, dispatch)
             }
-            
-            
         }
     }
 }

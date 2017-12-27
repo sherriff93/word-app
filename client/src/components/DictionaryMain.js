@@ -6,15 +6,13 @@ import '../css/DictionaryMain.css'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
 
-import {fetchWordsStart} from '../actions/actions'
-import {fetchWordsSuccess} from '../actions/actions'
-import {fetchWordsFail} from '../actions/actions'
+import {fetchWords} from '../lib'
 
 class DictionaryMain extends Component {
     
     componentDidMount(){
         console.log(": ");console.log('fetchWords')//IS_DEBUG
-        this.props.fetchWords()
+        this.props.populate()
     }
     
     render() {
@@ -63,19 +61,8 @@ const mapStateToProps = function(store, ownProps) {
 
 const mapDispatchToProps = function(dispatch) { // TODO Could put the fetch into a function
     return {
-        fetchWords: () => {
-            dispatch(fetchWordsStart())
-            fetch('/api/words')
-            .then(response => {
-                if(response.status === 200){
-                    response.json() // TODO What happens if this fails?
-                    .then(json => dispatch(fetchWordsSuccess(json)))
-                }
-                else{
-                    dispatch(fetchWordsFail())
-                }
-            })
-            
+        populate: () => {
+            fetchWords(dispatch)
         }
     }
 }
