@@ -1,12 +1,5 @@
 import * as types from './action-types'
 
-export function deleteWord(value) {
-    return {
-        type: types.DELETE_WORD,
-        value
-    }
-}
-
 export function addDictionary(value) {
     return {
         type: types.ADD_DICTIONARY,
@@ -48,34 +41,15 @@ export function fetchWordsStart() {
     }
 }
 
-export function fetchWordsSuccess(data) {
+export function fetchWordsSuccess(words) {
     return {
         type: types.FETCH_WORDS_SUCCESS,
-        data
+        words
     }
 }
 
 export function fetchWordsFail() {
     return {
         type: types.FETCH_WORDS_FAIL
-    }
-}
-
-export function addWordStart() {
-    return {
-        type: types.ADD_WORD_START
-    }
-}
-
-export function addWordSuccess(words) {
-    return {
-        type: types.ADD_WORD_SUCCESS,
-        words
-    }
-}
-
-export function addWordFail() {
-    return {
-        type: types.ADD_WORD_FAIL
     }
 }

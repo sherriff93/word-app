@@ -21,16 +21,18 @@ router.post('/words', function(req, res, next){
 // update a word in the db
 router.put('/words/:id', function(req, res, next){
     Word.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-        Word.findOne({_id: req.params.id}).then(function(word){
-            res.send(word);
+        Word.find().then(function(words){
+            res.send(words);
         });
     }).catch(next);
 });
 
 // delete a word from the db
 router.delete('/words/:id', function(req, res, next){
-    Word.findByIdAndRemove({_id: req.params.id}).then(function(word){
-        res.send(word);
+    Word.findByIdAndRemove({_id: req.params.id}).then(function(){
+        Word.find().then(function(words){
+            res.send(words);
+        });
     }).catch(next);
 });
 

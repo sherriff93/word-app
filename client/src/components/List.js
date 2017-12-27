@@ -13,7 +13,7 @@ class List extends Component {
     const {items} = this.props
     let itemsHtml = items.map(function (item, index) {
       return (
-        <Item key={index} english={item.english} />
+        <Item key={index} item={item} />
       )
     })
 

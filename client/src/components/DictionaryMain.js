@@ -13,6 +13,7 @@ import {fetchWordsFail} from '../actions/actions'
 class DictionaryMain extends Component {
     
     componentDidMount(){
+        console.log(": ");console.log('fetchWords')//IS_DEBUG
         this.props.fetchWords()
     }
     
