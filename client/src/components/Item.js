@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Item.css'
 
-import {fetchWordsStart} from '../actions/actions'
-import {fetchWordsSuccess} from '../actions/actions'
-import {fetchWordsFail} from '../actions/actions'
 import {deleteWord} from '../lib'
 
 class Item extends Component {

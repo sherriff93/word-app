@@ -9,6 +9,13 @@ router.get('/words', function(req, res, next){
     }).catch(next);
 });
 
+// get a list of words from the db
+router.get('/words/:dictionary', function(req, res, next){
+    Word.find({dictionary: {$eq: req.params.dictionary}}).then(function(words){
+        res.send(words);
+    }).catch(next);
+});
+
 // add a new word to the db
 router.post('/words', function(req, res, next){
     Word.create(req.body).then(function(){

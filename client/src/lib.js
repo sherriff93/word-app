@@ -2,9 +2,9 @@ import {fetchWordsStart} from './actions/actions'
 import {fetchWordsSuccess} from './actions/actions'
 import {fetchWordsFail} from './actions/actions'
 
-function fetchWords(dispatch) {
+function fetchWordsByDictionary(dictionary, dispatch) {
     dispatch(fetchWordsStart())
-    fetch('/api/words')
+    fetch('/api/words/' + dictionary)
     .then(response => {
         if(response.status === 200){
             response.json() // TODO What happens if this fails?
@@ -83,7 +83,7 @@ function updateWord(existingItem, values, name, dispatch) {
 }
 
 module.exports = {
-    fetchWords: fetchWords,
+    fetchWordsByDictionary: fetchWordsByDictionary,
     insertWord: insertWord,
     deleteWord: deleteWord,
     updateWord: updateWord,

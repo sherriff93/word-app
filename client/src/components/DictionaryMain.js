@@ -6,13 +6,14 @@ import '../css/DictionaryMain.css'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
 
-import {fetchWords} from '../lib'
+import {fetchWordsByDictionary} from '../lib'
 
 class DictionaryMain extends Component {
     
     componentDidMount(){
+        const {name} = this.props
         console.log(": ");console.log('fetchWords')//IS_DEBUG
-        this.props.populate()
+        this.props.populate(name)
     }
     
     render() {
@@ -21,19 +22,18 @@ class DictionaryMain extends Component {
         const {name, match, items} = this.props,
         dictMainPath = match.path,
         testPath = dictMainPath + '/test',
-        itemsFiltered = items.filter(item => item.dictionary === name),
         routes = [
             {
                 path: dictMainPath,
                 exact: true,
                 component: () => (
-                    <DictionaryView name={name} items={itemsFiltered} linkPath={testPath} />
+                    <DictionaryView name={name} items={items} linkPath={testPath} />
                 )
             },
             {
                 path: testPath,
                 component: () => (
-                    <TestWrapper initialItems={itemsFiltered} linkPath={dictMainPath} />
+                    <TestWrapper initialItems={items} linkPath={dictMainPath} />
                 )
             }
         ]
@@ -61,8 +61,8 @@ const mapStateToProps = function(store, ownProps) {
 
 const mapDispatchToProps = function(dispatch) { // TODO Could put the fetch into a function
     return {
-        populate: () => {
-            fetchWords(dispatch)
+        populate: (dictionary) => {
+            fetchWordsByDictionary(dictionary, dispatch)
         }
     }
 }
