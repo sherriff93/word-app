@@ -2,35 +2,36 @@ import * as types from '../actions/action-types'
 
 const initialState = {
     items: [
-      {
-        english: 'To dare',
-        spanish: 'Atrever',
-        dictionary: 'Harry Potter',
-        index: 0
-      }
+      {}
     ],
-    test: 'none'
+    isLoading: true
 }
 
 const dictionaryMainReducer = function(state = initialState, action) {
     let newState = null
     switch(action.type) {
-        case types.FETCH_WORDS_SUCCESS: {
+        case types.FETCH_WORDS_START: {
             newState = {
                 ...state,
-                items: action.words
+                isLoading: true
             }
             break
         }
-        case types.FETCH_DATA:
-            newState = state
+        case types.FETCH_WORDS_SUCCESS: {
+            newState = {
+                ...state,
+                items: action.words,
+                isLoading: false
+            }
             break
-        case types.FETCH_SUCCESS:
-            newState = {...state, test: action.data}
+        }
+        case types.FETCH_WORDS_FAIL: {
+            newState = {
+                ...state,
+                isLoading: false
+            }
             break
-        case types.FETCH_FAIL:
-            newState = {...state, test: 'fail'}
-            break
+        }
         default:
             newState = state
     }

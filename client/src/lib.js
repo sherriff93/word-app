@@ -3,7 +3,7 @@ import {fetchWordsSuccess} from './actions/actions'
 import {fetchWordsFail} from './actions/actions'
 
 function fetchWordsByDictionary(dictionary, dispatch) {
-    dispatch(fetchWordsStart())
+    // dispatch(fetchWordsStart()) // TODO Get rid of isLoading or make it less clunky
     fetch('/api/words/' + dictionary)
     .then(response => {
         if(response.status === 200){
@@ -17,7 +17,7 @@ function fetchWordsByDictionary(dictionary, dispatch) {
 }
 
 function insertWord(values, name, dispatch) {
-    dispatch(fetchWordsStart())
+    // dispatch(fetchWordsStart())
     fetch('/api/words', {
         method: 'POST',
         headers: {
@@ -42,7 +42,7 @@ function insertWord(values, name, dispatch) {
 }
 
 function deleteWord(item, dispatch) {
-    dispatch(fetchWordsStart())
+    // dispatch(fetchWordsStart())
     fetch('/api/words/' + item._id, {
         method: 'DELETE'
     })
@@ -58,7 +58,7 @@ function deleteWord(item, dispatch) {
 }
 
 function updateWord(existingItem, values, name, dispatch) {
-    dispatch(fetchWordsStart())
+    // dispatch(fetchWordsStart())
     fetch('/api/words/' + existingItem._id, {
         method: 'PUT',
         headers: {

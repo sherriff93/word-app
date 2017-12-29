@@ -18,8 +18,7 @@ class DictionaryMain extends Component {
     
     render() {
         console.log('main rerender') // TODO Get rid of console.logs without IS_DEBUG
-        console.log(this.props.test)
-        const {name, match, items} = this.props,
+        const {name, match, items, isLoading} = this.props,
         dictMainPath = match.path,
         testPath = dictMainPath + '/test',
         routes = [
@@ -39,7 +38,9 @@ class DictionaryMain extends Component {
         ]
         return (
             <div>
-                {routes.map((route, index) => (
+                {isLoading ? (
+                    <p>Loading...</p>
+                ) : routes.map((route, index) => (
                     <Route
                         key={index}
                         path={route.path}
@@ -55,7 +56,7 @@ class DictionaryMain extends Component {
 const mapStateToProps = function(store, ownProps) {
     return {
         items: store.dictionaryMainState.items,
-        test: store.dictionaryMainState.test
+        isLoading: store.dictionaryMainState.isLoading
     }
 }
 
