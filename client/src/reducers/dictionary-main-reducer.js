@@ -13,7 +13,7 @@ const dictionaryMainReducer = function(state = initialState, action) {
         case types.FETCH_WORDS_START: {
             newState = {
                 ...state,
-                isLoading: true
+                isLoading: true // TODO loading... is clunky. just show previous state until its loaded
             }
             break
         }

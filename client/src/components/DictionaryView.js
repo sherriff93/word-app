@@ -31,12 +31,6 @@ class DictionaryView extends Component {
     
 }
 
-const mapStateToProps = function(store, ownProps) {
-    return {
-        items: store.dictionaryMainState.items
-    }
-}
-
 const mapDispatchToProps = function(dispatch) {
     return {
         onSubmit: (items, values, name) => { // TODO Change onSubmits. here, change to addWord
@@ -54,6 +48,6 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(DictionaryView)

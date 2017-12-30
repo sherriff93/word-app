@@ -2,9 +2,9 @@ import {fetchWordsStart} from './actions/actions'
 import {fetchWordsSuccess} from './actions/actions'
 import {fetchWordsFail} from './actions/actions'
 
-function fetchWordsByDictionary(dictionary, dispatch) {
+function fetchWords(dispatch) { // TODO ask: How to do an api call that puts/posts/deletes but need to then fetch a filtered set? One API call or many?
     // dispatch(fetchWordsStart()) // TODO Get rid of isLoading or make it less clunky
-    fetch('/api/words/' + dictionary)
+    fetch('/api/words')
     .then(response => {
         if(response.status === 200){
             response.json() // TODO What happens if this fails?
@@ -83,7 +83,7 @@ function updateWord(existingItem, values, name, dispatch) {
 }
 
 module.exports = {
-    fetchWordsByDictionary: fetchWordsByDictionary,
+    fetchWords: fetchWords,
     insertWord: insertWord,
     deleteWord: deleteWord,
     updateWord: updateWord,
