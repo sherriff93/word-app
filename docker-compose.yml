@@ -1,0 +1,45 @@
+version: '3'
+services:
+    client:
+        build: ./app/client
+        container_name: "client"
+        # restart: always
+        environment:
+            - NODE_ENV=development
+        command:
+            - ./client/run.sh # TODO Why are we in app here automatically?
+        volumes:
+            - ./app/client:/app/client # TODO client, not app/client. Also elsewhere
+            - /app/client/node_modules # Same as above
+        ports:
+            - 3000:3000
+        depends_on:
+            - server
+            - mongodb
+    server:
+        build: ./app # TODO Server needs its own dedicated dir
+        container_name: "server"
+        # restart: always
+        environment:
+            - NODE_ENV=development
+        command:
+            - ./run.sh
+        volumes:
+            - ./app:/app
+            - /app/node_modules # Trick to get the container to see node_modules
+        ports:
+            - 4000:4000
+        depends_on:
+            - mongodb
+    mongodb:
+        image: mongo:latest # TODO not latest
+        container_name: "mongodb"
+        # restart: always
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod # --smallfiles --logpath=/dev/null # --quiet
