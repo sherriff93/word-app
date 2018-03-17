@@ -3,36 +3,46 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../css/DictionaryView.css'
 
-import {addWord} from '../actions/actions'
-
 import WordForm from './WordForm'
 import List from './List'
 
-class DictionaryView extends Component {
-  constructor() {
-    super()
-    this.labels = ['English', 'Spanish']
-  }
+import {updateWord} from '../lib'
+import {insertWord} from '../lib'
 
-  render() {
-    console.log('view rerender')
-    const {name, items, linkPath, onSubmit} = this.props
-    const {labels} = this
-    return (
-      <div>
-        {name}
-        <Link to={linkPath}>Test</Link>
-        <WordForm labels={labels} onSubmit={(values) => onSubmit(values, name)} />
-        <List items={items} />
-      </div>
-    )
-  }
+class DictionaryView extends Component {
+    constructor() {
+        super()
+        this.labels = ['English', 'Spanish']
+    }
+    
+    render() {
+        console.log('view rerender')
+        const {name, items, linkPath, onSubmit} = this.props
+        const {labels} = this
+        return (
+            <div>
+                {name}
+                <Link to={linkPath}>Test</Link>
+                <WordForm labels={labels} onSubmit={(values) => onSubmit(items, values, name)} />
+                <List items={items} />
+            </div>
+        )
+    }
+    
 }
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        onSubmit: (values, name) => {
-          dispatch(addWord(values, name))// TODO This needs to be generalised to addDictionaries, addWords
+        onSubmit: (items, values, name) => { // TODO Change onSubmits. here, change to addWord
+            // let newItems // ask: Why does this still exist?
+            let existingItem = items.find(word => word.english === values.English)
+            if (existingItem !== undefined) {
+                if (confirm("Overrite existing?") !== false) {// ASK is using the key as a label bad?
+                    updateWord(existingItem, values, name, dispatch)
+                }
+            } else {
+                insertWord(values, name, dispatch)
+            }
         }
     }
 }
