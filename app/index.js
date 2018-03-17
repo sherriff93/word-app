@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://mongodb/ninjago');
+mongoose.connect('mongodb://mongodb/word-app');
 mongoose.Promise = global.Promise;
 
 //set up static files
