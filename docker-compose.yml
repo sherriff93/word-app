@@ -17,16 +17,16 @@ services:
             - server
             - mongodb
     server:
-        build: ./app # TODO Server needs its own dedicated dir
+        build: ./app/server # TODO Server needs its own dedicated dir
         container_name: "server"
         # restart: always
         environment:
             - NODE_ENV=development
         command:
-            - ./run.sh
+            - ./server/run.sh
         volumes:
-            - ./app:/app
-            - /app/node_modules # Trick to get the container to see node_modules
+            - ./app/server:/app/server
+            - /app/server/node_modules # Trick to get the container to see node_modules
         ports:
             - 4000:4000
         depends_on:
