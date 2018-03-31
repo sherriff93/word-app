@@ -6,7 +6,6 @@ FROM node:8
 COPY package*.json /app/client/
 # COPY package.json /app/package.json
 # COPY client/package.json /app/client/package.json
-RUN pwd
 RUN cd client && npm install
 # WORKDIR /app
 # 

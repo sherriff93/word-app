@@ -17,7 +17,7 @@ services:
             - server
             - mongodb
     server:
-        build: ./app/server # TODO Server needs its own dedicated dir
+        build: ./app/server
         container_name: "server"
         # restart: always
         environment:

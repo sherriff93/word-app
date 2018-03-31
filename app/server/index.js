@@ -4,9 +4,19 @@ const mongoose = require('mongoose');
 
 // set up express app
 const app = express();
+const mongoUrl = 'mongodb://mongodb/word-app';
+
+var connectWithRetry = function() {
+  return mongoose.connect(mongoUrl, function(err) {
+    if (err) {
+      console.error('Failed to connect to mongoDB. Retrying in 5 seconds');
+      setTimeout(connectWithRetry, 5000);
+    }
+  });
+};
 
 // connect to mongodb
-mongoose.connect('mongodb://mongodb/word-app');
+connectWithRetry();
 mongoose.Promise = global.Promise;
 
 //set up static files
