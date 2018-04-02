@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import '../css/DictionaryView.css'
 
 import WordForm from './WordForm'
 import List from './List'

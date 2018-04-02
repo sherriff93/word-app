@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import '../css/Test.css';
 
 import {questionAnswered} from '../actions/actions'
 

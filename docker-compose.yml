@@ -6,6 +6,7 @@ services:
         # restart: always
         environment:
             - NODE_ENV=development
+            - CHOKIDAR_USEPOLLING=true
         command:
             - ./client/run.sh # TODO Why are we in app here automatically?
         volumes:

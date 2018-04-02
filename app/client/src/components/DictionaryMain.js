@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import '../css/DictionaryMain.css'
 
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'

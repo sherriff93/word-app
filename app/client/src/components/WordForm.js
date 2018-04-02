@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
-import '../css/WordForm.css'
 
 class WordForm extends Component {
     constructor(props) {//TODO Difference here between constructor and render?

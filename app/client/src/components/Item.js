@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/Item.css'
 
 import {deleteWord} from '../lib'
 

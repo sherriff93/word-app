@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../css/List.css'
 
 import Item from './Item'
 
