@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import styled, { injectGlobal } from 'styled-components';
 
-import Dictionary from './components/Dictionary'
+import Dictionary from './Dictionary'
 
-import {addDictionary} from './actions/actions'
+import {addDictionary} from '../actions/actions'
 
 class App extends Component {
 
