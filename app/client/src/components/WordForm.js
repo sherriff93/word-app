@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
+import styled from 'styled-components';
 
 class WordForm extends Component {
     constructor(props) {//TODO Difference here between constructor and render?
@@ -17,6 +18,17 @@ class WordForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     render() {
+
+        const TextInput = styled.input `
+            width: 40%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        `
+        
         console.log('wordform rerender')
         const {values} = this.state
         
@@ -24,7 +36,7 @@ class WordForm extends Component {
             return (
                 <label key={index}>
                     {fieldName}
-                    <input type="text" name={fieldName} value={values[fieldName]} onChange={this.handleChange} />
+                    <TextInput type="text" name={fieldName} value={values[fieldName]} onChange={this.handleChange} />
                 </label>
             )
         }.bind(this))
