@@ -11,23 +11,34 @@ class App extends Component {
     
     constructor() {
         super()
-        this.onClick = this.onClick.bind(this)
+        this.state = { activeIndex: 0 };
+        this.addDictionary = this.addDictionary.bind(this)
     }
     
     render() {
         
         injectGlobal `
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+            }
+            
+            html {
+                height: 100%;
+            }
+            
+            #root {
+                height: 100%;
+            }
         `
         
         const GridContainer = styled.div `
+            height: 100%;
             display: grid;
             grid-template-columns: 30% 50% 20%;
-            grid-template-rows: 3vh 97vh;
+            grid-template-rows: 35px auto;
             grid-template-areas:
                 'header header header'
                 'sidebar main main'
@@ -46,7 +57,6 @@ class App extends Component {
         // TODO Get rid of box shadow between sidebar and header
         const Sidebar = styled.div `
             grid-area: sidebar;
-            padding: 10px;
             background: #f0f0f0;
             box-shadow: 0 0 10px grey;
             z-index: 2;
@@ -64,9 +74,9 @@ class App extends Component {
                     </Header>
                     <Sidebar>
                         <ul>
-                            {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} onDelete={this.onDelete}/>))}
+                            {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
                         </ul>
-                        <span className="delete" onClick={this.onClick}>
+                        <span className="delete" onClick={this.addDictionary}>
                             Add Dictionary
                         </span>
                     </Sidebar>
@@ -80,10 +90,14 @@ class App extends Component {
     }
 
     // Custom Functions
-    onClick() {
-        const {onClick} = this.props
+    addDictionary() {
+        const {addDictionary} = this.props
         const toAdd = prompt()
-        onClick(toAdd)
+        addDictionary(toAdd)
+    }
+    
+    setActiveItem(index) {
+        this.setState({ activeIndex: index });
     }
 }
 
@@ -93,7 +107,7 @@ const mapStateToProps = function(store) {
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        onClick: (value) => {
+        addDictionary: (value) => {
             dispatch(addDictionary(value))
         }
     }

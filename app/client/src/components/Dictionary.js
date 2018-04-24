@@ -7,14 +7,29 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {deleteDictionary} from '../actions/actions'
 
 class Dictionary extends Component {
+    constructor(props) {
+        super()
+        this.labels = ['Spanish']
+        this.onDictionaryClick = this.onDictionaryClick.bind(this)
+    }
+    
     render () {
         
         const Dictionary = styled.li `
-            margin-bottom: 10px;
+            padding: 10px;
+            height: 40px;
+            display: grid;
+            background: ${props => props.active ? '#ff6e00' : 'transparent'}
+        `
+        
+        const CenteredDiv = styled.div `
+            align-self: center;
         `
         
         const StyledLink = styled(Link) `
             font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
+            font-size: 15px;
+            font-weight: 100;
             color: black;
             text-decoration: none;
         `
@@ -27,20 +42,25 @@ class Dictionary extends Component {
             float: right;
         `
 
-        console.log('dictionary rerender')
-        const {dictionary, onDelete} = this.props
+        const {dictionary, onDelete, active} = this.props
         const {path, name} = dictionary
         return (
-            <Dictionary>
-                <BookIcon>
-                    <FontAwesomeIcon icon="book" color="grey"/>
-                </BookIcon>
-                <StyledLink to={path}>{name}</StyledLink>
-                <EditIcon>
-                    <FontAwesomeIcon onClick={() => onDelete(name)} icon="edit" color="grey"/>
-                </EditIcon>
+            <Dictionary active={active} onClick={this.onDictionaryClick}>
+                <CenteredDiv>
+                    <BookIcon>
+                        <FontAwesomeIcon icon="book" color="grey"/>
+                    </BookIcon>
+                    <StyledLink to={path}>{name}</StyledLink>
+                    <EditIcon>
+                        <FontAwesomeIcon onClick={() => onDelete(name)} icon="edit" color="grey"/>
+                    </EditIcon>
+                </CenteredDiv>
             </Dictionary>
         )
+    }
+    
+    onDictionaryClick() {
+        this.props.onClick()
     }
 }
 

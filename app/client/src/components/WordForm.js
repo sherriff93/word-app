@@ -52,8 +52,8 @@ class WordForm extends Component {
     }
     
     // Custom functions
-    handleChange(e) {
-        let {values} = this.state
+    handleChange(e) { // TODO Give all functions correct names
+        let {values} = this.state // TODO const in function definitions
         values[e.target.name] = e.target.value
         this.setState({values})
     }
