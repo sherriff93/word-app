@@ -15,13 +15,6 @@ class Dictionary extends Component {
     
     render () {
         
-        const Dictionary = styled.li `
-            padding: 10px;
-            height: 40px;
-            display: grid;
-            background: ${props => props.active ? '#ff6e00' : 'transparent'}
-        `
-        
         const CenteredDiv = styled.div `
             align-self: center;
         `
@@ -32,6 +25,10 @@ class Dictionary extends Component {
             font-weight: 100;
             color: black;
             text-decoration: none;
+            padding: 10px;
+            height: 40px;
+            display: grid;
+            background: ${props => props.active ? '#ff6e00' : 'transparent'}
         `
         
         const BookIcon = styled.span `
@@ -45,17 +42,17 @@ class Dictionary extends Component {
         const {dictionary, onDelete, active} = this.props
         const {path, name} = dictionary
         return (
-            <Dictionary active={active} onClick={this.onDictionaryClick}>
+            <StyledLink active={active} onClick={this.onDictionaryClick} to={path}>
                 <CenteredDiv>
                     <BookIcon>
                         <FontAwesomeIcon icon="book" color="grey"/>
                     </BookIcon>
-                    <StyledLink to={path}>{name}</StyledLink>
+                    {name}
                     <EditIcon>
                         <FontAwesomeIcon onClick={() => onDelete(name)} icon="edit" color="grey"/>
                     </EditIcon>
                 </CenteredDiv>
-            </Dictionary>
+            </StyledLink>
         )
     }
     

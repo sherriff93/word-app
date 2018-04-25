@@ -73,9 +73,7 @@ class App extends Component {
                     <Header>
                     </Header>
                     <Sidebar>
-                        <ul>
-                            {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
-                        </ul>
+                        {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
                         <span className="delete" onClick={this.addDictionary}>
                             Add Dictionary
                         </span>
