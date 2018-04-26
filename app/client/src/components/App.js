@@ -2,10 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import styled, { injectGlobal } from 'styled-components';
-
 import Dictionary from './Dictionary'
-
-import {addDictionary} from '../actions/actions'
+import {addDictionary} from '../actions/actions' // TODO Delete spaces in all files
 
 class App extends Component {
     
@@ -18,11 +16,15 @@ class App extends Component {
     render() {
         
         injectGlobal `
+            :root {
+              --red: #b00;
+            }
+            
             body {
                 height: 100%;
                 margin: 0;
                 padding: 0;
-                font-family: sans-serif;
+                font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
             }
             
             html {
@@ -37,11 +39,11 @@ class App extends Component {
         const GridContainer = styled.div `
             height: 100%;
             display: grid;
-            grid-template-columns: 30% 50% 20%;
+            grid-auto-columns: 300px auto;
             grid-template-rows: 35px auto;
             grid-template-areas:
-                'header header header'
-                'sidebar main main'
+                'header header'
+                'sidebar main'
         `
         
         const Main = styled.div `
@@ -50,7 +52,7 @@ class App extends Component {
         
         const Header = styled.div `
             grid-area: header;
-            background: #33ccff;
+            background: var(--red);
             z-index: 1;
             box-shadow: 0 0 10px grey;
         `

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components';
 
 import WordForm from './WordForm'
 import List from './List'
@@ -15,13 +16,49 @@ class DictionaryView extends Component {
     }
     
     render() {
+        
+        const DictionaryHeader = styled.div `
+            display: grid;
+            background: #66ccff;
+            height: 35px;
+        `
+        
+        const CenteredDiv = styled.div `
+            align-self: center;
+        `
+        
+        const StyledLink = styled(Link) `
+        `
+        
+        const HeaderSection = styled.div `
+            display: inline-block;
+            color: black;
+            text-decoration: none;
+            background: ${props => props.active ? '#ff6e00' : 'transparent'}
+            padding: 10px;
+        `
+        
+        const Title = HeaderSection.extend `
+            
+        `
+        
+        const HeaderLink = HeaderSection.withComponent(Link)
+        
+        const TestLink = HeaderLink.extend `
+            float: right;
+        `
+        
         console.log('view rerender')
         const {name, items, linkPath, onSubmit} = this.props
         const {labels} = this
         return (
             <div>
-                {name}
-                <Link to={linkPath}>Test</Link>
+                <DictionaryHeader>
+                    <CenteredDiv>
+                        <Title>{name}</Title>
+                        <TestLink to={linkPath}>Test</TestLink>
+                    </CenteredDiv>
+                </DictionaryHeader>
                 <WordForm labels={labels} onSubmit={(values) => onSubmit(items, values, name)} />
                 <List items={items} />
             </div>

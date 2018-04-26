@@ -20,7 +20,6 @@ class Dictionary extends Component {
         `
         
         const StyledLink = styled(Link) `
-            font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
             font-size: 15px;
             font-weight: 100;
             color: black;
