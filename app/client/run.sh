@@ -1,2 +1,2 @@
 #!/bin/sh
-cd client && npm start
+cd app/client && npm start

@@ -8,10 +8,10 @@ services:
             - NODE_ENV=development
             - CHOKIDAR_USEPOLLING=true
         command:
-            - ./client/run.sh # TODO Why are we in app here automatically?
+            - ./app/client/run.sh
         volumes:
-            - ./app/client:/app/client # TODO client, not app/client. Also elsewhere
-            - /app/client/node_modules # Same as above
+            - ./app/client:/app/client
+            - /app/client/node_modules
         ports:
             - 3000:3000
         depends_on:
@@ -24,7 +24,7 @@ services:
         environment:
             - NODE_ENV=development
         command:
-            - ./server/run.sh
+            - ./app/server/run.sh
         volumes:
             - ./app/server:/app/server
             - /app/server/node_modules # Trick to get the container to see node_modules

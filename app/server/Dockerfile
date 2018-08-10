@@ -7,7 +7,7 @@ COPY package*.json /app/server/
 # COPY package.json /app/package.json
 # COPY client/package.json /app/client/package.json
 
-RUN cd server && npm install
+RUN cd app/server && npm install
 # WORKDIR /app
 # 
 # RUN mkdir -p /app
