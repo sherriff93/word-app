@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
-import {deleteDictionary} from '../actions/actions'
+import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
 
 class Dictionary extends Component {
     constructor(props) {
         super()
         this.labels = ['Spanish']
         this.onDictionaryClick = this.onDictionaryClick.bind(this)
+        this.showEditDictionaryPopup = this.showEditDictionaryPopup.bind(this)
     }
     
     render () {
@@ -48,7 +49,7 @@ class Dictionary extends Component {
                     </BookIcon>
                     {name}
                     <EditIcon>
-                        <FontAwesomeIcon onClick={() => onDelete(name)} icon="edit" color="grey"/>
+                        <FontAwesomeIcon onClick={() => this.showEditDictionaryPopup()} icon="edit" color="grey"/>
                     </EditIcon>
                 </CenteredDiv>
             </StyledLink>
@@ -58,12 +59,20 @@ class Dictionary extends Component {
     onDictionaryClick() {
         this.props.onClick()
     }
+
+    showEditDictionaryPopup() {
+        const {dictionary, showEditDictionaryPopup} = this.props
+        showEditDictionaryPopup(dictionary)
+    }
 }
 
 const mapDispatchToProps = function(dispatch) {
     return {
         onDelete: (value) => { // TODO change to edit, not delete
             dispatch(deleteDictionary(value))
+        },
+        showEditDictionaryPopup: (dictionary) => {
+            dispatch(showEditDictionaryPopup(dictionary))
         }
     }
 }

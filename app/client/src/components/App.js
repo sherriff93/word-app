@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import styled, { injectGlobal } from 'styled-components';
+import styled, { injectGlobal } from 'styled-components'
 import Dictionary from './Dictionary'
+import Popup from './Popup'
 import {addDictionary} from '../actions/actions' // TODO Delete spaces in all files
 
 class App extends Component {
@@ -67,24 +68,37 @@ class App extends Component {
                 padding: 0;
             }
         `
+
+        const OuterContainer = styled.div `
+            height: 100%;
+        `
         
         const {dictionaries} = this.props
         return (
             <Router>
-                <GridContainer>
-                    <Header>
-                    </Header>
-                    <Sidebar>
-                        {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
-                        <span className="delete" onClick={this.addDictionary}>
-                            Add Dictionary
-                        </span>
-                    </Sidebar>
-                    
-                    <Main>
-                        {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
-                    </Main>
-                </GridContainer>
+                <OuterContainer>
+                    <GridContainer>
+                        <Header>
+                        </Header>
+                        <Sidebar>
+                            {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
+                            <span className="delete" onClick={this.addDictionary}>
+                                Add Dictionary
+                            </span>
+                        </Sidebar>
+                        
+                        <Main>
+                            {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
+                        </Main>
+                    </GridContainer>
+                    {this.props.showPopupWithParams ?
+                        <Popup
+                            text='Close Me'
+                            closePopup={this.showEditDictionaryPopup}
+                        />
+                        : null
+                    }
+                </OuterContainer>
             </Router>
         )
     }
@@ -102,7 +116,10 @@ class App extends Component {
 }
 
 const mapStateToProps = function(store) {
-    return {dictionaries: store.appState.dictionaries}
+    return {
+        dictionaries: store.appState.dictionaries,
+        showPopupWithParams: store.appState.showPopupWithParams
+    }
 }
 
 const mapDispatchToProps = function(dispatch) {

@@ -53,3 +53,16 @@ export function fetchWordsFail() {
         type: types.FETCH_WORDS_FAIL
     }
 }
+
+export function showEditDictionaryPopup(dictionary) {
+    return {
+        type: types.SHOW_EDIT_DICTIONARY_POPUP,
+        dictionary
+    }
+}
+
+export function hideCurrentPopup() {
+    return {
+        type: types.HIDE_CURRENT_POPUP,
+    }
+}
