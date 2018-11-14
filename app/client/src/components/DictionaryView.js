@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import WordForm from './WordForm'
 import List from './List'
-
 import {updateWord} from '../lib'
 import {insertWord} from '../lib'
-import {DictionaryHeader, CenteredDiv, StyledLink, HeaderSection, Title, HeaderLink, TestLink} from "../styles/DictionaryView";
+import {DictionaryHeader, CenteredDiv, Title, TestLink} from "../styles/DictionaryView";
 
 class DictionaryView extends Component {
     constructor() {

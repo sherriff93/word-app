@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 
 // Reducers
 import dictionaryMainReducer from './dictionary-main-reducer'

@@ -1,6 +1,5 @@
 import React from 'react'
 import * as types from '../actions/action-types'
-
 import Home from '../components/Home'
 import DictionaryMain from '../components/DictionaryMain'
 

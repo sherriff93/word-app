@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-
 import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
 import {CenteredDiv, StyledLink, BookIcon, EditIcon} from "../styles/Dictionary";
 

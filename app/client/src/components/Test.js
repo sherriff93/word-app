@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import {questionAnswered} from '../actions/actions'
-
 import WordForm from './WordForm'
 
 class Test extends Component {

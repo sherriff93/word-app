@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from "react-router-dom"
 import {hideCurrentPopup} from "../actions/actions"
 import {connect} from 'react-redux'
 import {PopupInner, PopupOuter} from "../styles/Popup";

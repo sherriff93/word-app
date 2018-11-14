@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import styled, { injectGlobal } from 'styled-components'
+import styled, {injectGlobal} from 'styled-components'
 import Dictionary from './Dictionary'
 import Popup from './Popup'
 import {addDictionary} from '../actions/actions' // TODO Delete spaces in all files

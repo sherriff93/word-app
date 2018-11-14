@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 import {setItems} from '../actions/actions'
 import {resetScore} from '../actions/actions'
-
 import Test from './Test'
 
 class TestWrapper extends Component {

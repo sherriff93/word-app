@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
-
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Route} from 'react-router-dom'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
-
 import {fetchWords} from '../lib'
 
 class DictionaryMain extends Component {
