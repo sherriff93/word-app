@@ -1,30 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
-
-const CenteredDiv = styled.div `
-            align-self: center;
-        `
-const StyledLink = styled(Link) `
-            font-size: 15px;
-            font-weight: 100;
-            color: black;
-            text-decoration: none;
-            padding: 10px;
-            height: 40px;
-            display: grid;
-            background: ${props => props.active ? '#ff6e00' : 'transparent'}
-        `
-const BookIcon = styled.span `
-            margin-right: 10px;
-        `
-const EditIcon = styled.span `
-            float: right;
-        `
+import {CenteredDiv, StyledLink, BookIcon, EditIcon} from "../styles/Dictionary";
 
 class Dictionary extends Component {
     constructor(props) {

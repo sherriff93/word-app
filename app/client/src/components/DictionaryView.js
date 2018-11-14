@@ -1,38 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components';
 
 import WordForm from './WordForm'
 import List from './List'
 
 import {updateWord} from '../lib'
 import {insertWord} from '../lib'
-
-const DictionaryHeader = styled.div `
-            display: grid;
-            background: #66ccff;
-            height: 35px;
-        `
-const CenteredDiv = styled.div `
-            align-self: center;
-        `
-const StyledLink = styled(Link) `
-        `
-const HeaderSection = styled.div `
-            display: inline-block;
-            color: black;
-            text-decoration: none;
-            background: ${props => props.active ? '#ff6e00' : 'transparent'}
-            padding: 10px;
-        `
-const Title = HeaderSection.extend `
-            
-        `
-const HeaderLink = HeaderSection.withComponent(Link)
-const TestLink = HeaderLink.extend `
-            float: right;
-        `
+import {DictionaryHeader, CenteredDiv, StyledLink, HeaderSection, Title, HeaderLink, TestLink} from "../styles/DictionaryView";
 
 class DictionaryView extends Component {
     constructor() {
