@@ -54,6 +54,19 @@ export function fetchWordsFail() {
     }
 }
 
+export function fetchDictionariesSuccess(dictionaries) {
+    return {
+        type: types.FETCH_DICTIONARIES_SUCCESS,
+        dictionaries
+    }
+}
+
+export function fetchDictionariesFail() {
+    return {
+        type: types.FETCH_DICTIONARIES_FAIL
+    }
+}
+
 export function showEditDictionaryPopup(dictionary) {
     return {
         type: types.SHOW_EDIT_DICTIONARY_POPUP,

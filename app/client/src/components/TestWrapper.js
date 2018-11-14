@@ -13,8 +13,6 @@ class TestWrapper extends Component {
   }
 
   render() {
-    console.log('wrapper rerender')
-    console.log(this.props.items)
     const {linkPath, items, score, resetScore} = this.props,
       inProgress = items.length > 0
     let english = null,

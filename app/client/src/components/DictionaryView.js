@@ -13,8 +13,6 @@ class DictionaryView extends Component {
     }
     
     render() {
-        
-        console.log('view rerender')
         const {name, items, linkPath, onSubmit} = this.props
         const {labels} = this
         return (

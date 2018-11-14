@@ -1,24 +1,28 @@
 import React, {Component} from 'react'
 import {hideCurrentPopup} from "../actions/actions"
+import {deleteDictionary} from "../lib";
 import {connect} from 'react-redux'
+import WordForm from "./WordForm";
+import {PopupInner, PopupOuter} from "../styles/EditDictionaryPopup";
 
-class Popup extends Component {
+class EditDictionaryPopup extends Component {
+    constructor() {
+        super()
+        this.labels = ['New Name']
+    }
+    
     render() {
-
+        const {labels} = this
         return (
             <PopupOuter>
                 <PopupInner>
-                    <h1>{this.props.text}</h1>
-                    <TextInput></TextInput>
-                    <button onClick={this.props.hideCurrentPopup}>close me</button>
-                    <button onClick={this.props.deleteDictionary}>close me</button>
+                    <h1>Edit Dictionary</h1>
+                    <WordForm labels={labels} onSubmit={this.props.onSubmit} />
+                    <button onClick={this.props.hideCurrentPopup}>Close popup</button>
+                    <button onClick={() => this.props.deleteDictionary(this.props.dictionary)}>Delete</button>
                 </PopupInner>
             </PopupOuter>
         );
-    }
-
-    hideCurrentPopup() {
-        hideCurrentPopup()
     }
 }
 
@@ -26,6 +30,12 @@ const mapDispatchToProps = function(dispatch) {
     return {
         hideCurrentPopup: () => {
             dispatch(hideCurrentPopup())
+        },
+        onSubmit: () => {
+            dispatch(hideCurrentPopup())
+        },
+        deleteDictionary: (dictionary) => {
+            deleteDictionary(dictionary, dispatch)
         }
     }
 }
@@ -33,4 +43,4 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
     null,
     mapDispatchToProps
-)(Popup)
+)(EditDictionaryPopup)

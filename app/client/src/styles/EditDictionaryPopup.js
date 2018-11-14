@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-export {TextInput} from "../globalStyles";
 export const PopupOuter = styled.div`
             position: fixed;
             width: 100%;

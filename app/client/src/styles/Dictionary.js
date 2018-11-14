@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
+import React from 'react';
 
 export const CenteredDiv = styled.div `
             align-self: center;
         `
-export const StyledLink = styled(Link) `
+export const StyledLink = styled(({ active, ...rest }) => <Link {...rest} />) `
             font-size: 15px;
             font-weight: 100;
             color: black;

@@ -4,7 +4,6 @@ import {deleteWord} from '../lib'
 
 class Item extends Component {
     render () {
-        console.log('item rerender')
         const {item, onDelete} = this.props
         return (
             <li>

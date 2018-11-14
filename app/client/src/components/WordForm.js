@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {TextInput} from '../styles/WordForm.js'
 
 class WordForm extends Component {
+    
     constructor(props) {//TODO Difference here between constructor and render?
-        console.log('wordform constructor')
         super(props)
         const {labels} = this.props
         
@@ -16,9 +16,8 @@ class WordForm extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
+    
     render() {
-        
-        console.log('wordform rerender')
         const {values} = this.state
         
         let valuesHtml = Object.keys(values).map(function (fieldName, index) {
@@ -40,7 +39,6 @@ class WordForm extends Component {
         )
     }
     
-    // Custom functions
     handleChange(e) { // TODO Give all functions correct names
         let {values} = this.state // TODO const in function definitions
         values[e.target.name] = e.target.value
@@ -67,7 +65,3 @@ class WordForm extends Component {
 }
 
 export default WordForm
-// export default connect(
-//     null,
-//     mapDispatchToProps
-// )(WordForm)

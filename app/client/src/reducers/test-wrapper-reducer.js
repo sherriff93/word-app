@@ -9,7 +9,6 @@ const testWrapperReducer = function(state = initialState, action) {
     let newState = null
     switch(action.type) {
         case types.QUESTION_ANSWERED: {
-            console.log('state');console.log(state)
             let {items, score} = state
             newState = {
               ...state,
@@ -33,7 +32,6 @@ const testWrapperReducer = function(state = initialState, action) {
         default:
             newState = state
     }
-console.log(newState)
     return newState
 }
 

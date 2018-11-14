@@ -7,7 +7,6 @@ class List extends Component {
   }
 
   render () {
-    console.log('list rerender')
     const {items} = this.props
     let itemsHtml = items.map(function (item, index) {
       return (

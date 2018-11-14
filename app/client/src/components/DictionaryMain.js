@@ -12,7 +12,6 @@ class DictionaryMain extends Component {
     }
     
     render() {
-        console.log('main rerender') // TODO Get rid of console.logs without IS_DEBUG
         const {name, match, items, isLoading} = this.props,
         dictMainPath = match.path,
         testPath = dictMainPath + '/test',

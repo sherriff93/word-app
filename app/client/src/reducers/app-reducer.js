@@ -1,38 +1,14 @@
 import React from 'react'
 import * as types from '../actions/action-types'
-import Home from '../components/Home'
 import DictionaryMain from '../components/DictionaryMain'
 
 const initialState = {
-    dictionaries: [
-        {
-            path: '/',
-            exact: true,
-            name: 'Home',
-            main: Home
-        },
-        {
-            path: '/harry-potter',
-            name: 'Harry Potter',
-            main: ({match}) => (<DictionaryMain name="Harry Potter" match={match}/>)
-        },
-        {
-            path: '/things-ive-heard',
-            name: 'Things I\'ve heard',
-            main: ({match}) => (<DictionaryMain name="Things I've heard" match={match}/>)
-        },
-        {
-            path: '/woofing',
-            name: 'Woofing',
-            main: ({match}) => (<DictionaryMain name='Woofing' match={match}/>)
-        }
-    ],
+    dictionaries: [],
     showPopupWithParams: null
 }
 
 const AppReducer = function (state = initialState, action) {
     let newState = null
-    let dictionary = null
     let {dictionaries, showPopupWithParams} = state
     switch (action.type) {
         case types.ADD_DICTIONARY: {
@@ -67,6 +43,26 @@ const AppReducer = function (state = initialState, action) {
         case types.HIDE_CURRENT_POPUP: {
             showPopupWithParams = null
             newState = {...state, showPopupWithParams}
+            break
+        }
+        case types.FETCH_DICTIONARIES_SUCCESS: {
+            newState = {
+                ...state,
+                dictionaries: action.dictionaries.map((dictionary) => {
+                    return {
+                        ...dictionary,
+                        main: ({match}) => (<DictionaryMain name={dictionary.name} match={match}/>)
+                    }
+                }),
+                // isLoading: false // TODO isLoading? Here and in the fail function
+            }
+            break
+        }
+        case types.FETCH_DICTIONARIES_FAIL: { // TODO is this needed if isLading isn't? Same with words
+            newState = {
+                ...state,
+                // isLoading: false
+            }
             break
         }
         default:

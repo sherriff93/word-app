@@ -8,36 +8,25 @@ class Dictionary extends Component {
     constructor(props) {
         super()
         this.labels = ['Spanish']
-        this.onDictionaryClick = this.onDictionaryClick.bind(this)
-        this.showEditDictionaryPopup = this.showEditDictionaryPopup.bind(this)
     }
     
     render () {
 
-        const {dictionary, onDelete, active} = this.props
+        const {dictionary, active} = this.props
         const {path, name} = dictionary
         return (
-            <StyledLink active={active} onClick={this.onDictionaryClick} to={path}>
+            <StyledLink active={active} onClick={this.props.onClick} to={path}>
                 <CenteredDiv>
                     <BookIcon>
                         <FontAwesomeIcon icon="book" color="grey"/>
                     </BookIcon>
                     {name}
                     <EditIcon>
-                        <FontAwesomeIcon onClick={() => this.showEditDictionaryPopup()} icon="edit" color="grey"/>
+                        <FontAwesomeIcon onClick={(dictionary) => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
                     </EditIcon>
                 </CenteredDiv>
             </StyledLink>
         )
-    }
-    
-    onDictionaryClick() {
-        this.props.onClick()
-    }
-
-    showEditDictionaryPopup() {
-        const {dictionary, showEditDictionaryPopup} = this.props
-        showEditDictionaryPopup(dictionary)
     }
 }
 
