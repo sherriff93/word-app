@@ -1,2 +1,2 @@
 #!/bin/sh
-cd app/server && node index
+cd app/server && nodemon index

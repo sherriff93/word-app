@@ -17,6 +17,6 @@ RUN cd app/server && npm install
 # # WORKDIR /app
 
 # RUN npm install
-# RUN npm install -g nodemon
+ RUN npm install -g nodemon
 # 
 # CMD ["./run.sh"]
