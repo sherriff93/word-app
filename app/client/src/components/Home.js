@@ -2,33 +2,29 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import styled, { keyframes } from 'styled-components';
 
-class Home extends Component {
-  render() {
-  
-    const appLogoSpin = keyframes `
+const appLogoSpin = keyframes `
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     `
-      
-    const App = styled.div `
+const App = styled.div `
         text-align: center;
     `
-    
-    const AppHeader = styled.div `
+const AppHeader = styled.div `
         background-color: #222;
         height: 150px;
         padding: 20px;
         color: white;
     `
-  
-    const AppLogo = styled.img `
+const AppLogo = styled.img `
         animation: ${appLogoSpin} infinite 20s linear;
         height: 80px;
     `
-    
-    const AppIntro = styled.p `
+const AppIntro = styled.p `
         font-size: large;
     `
+
+class Home extends Component {
+  render() {
           
     return (
         <App>

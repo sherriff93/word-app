@@ -6,21 +6,10 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
 
-class Dictionary extends Component {
-    constructor(props) {
-        super()
-        this.labels = ['Spanish']
-        this.onDictionaryClick = this.onDictionaryClick.bind(this)
-        this.showEditDictionaryPopup = this.showEditDictionaryPopup.bind(this)
-    }
-    
-    render () {
-        
-        const CenteredDiv = styled.div `
+const CenteredDiv = styled.div `
             align-self: center;
         `
-        
-        const StyledLink = styled(Link) `
+const StyledLink = styled(Link) `
             font-size: 15px;
             font-weight: 100;
             color: black;
@@ -30,14 +19,22 @@ class Dictionary extends Component {
             display: grid;
             background: ${props => props.active ? '#ff6e00' : 'transparent'}
         `
-        
-        const BookIcon = styled.span `
+const BookIcon = styled.span `
             margin-right: 10px;
         `
-        
-        const EditIcon = styled.span `
+const EditIcon = styled.span `
             float: right;
         `
+
+class Dictionary extends Component {
+    constructor(props) {
+        super()
+        this.labels = ['Spanish']
+        this.onDictionaryClick = this.onDictionaryClick.bind(this)
+        this.showEditDictionaryPopup = this.showEditDictionaryPopup.bind(this)
+    }
+    
+    render () {
 
         const {dictionary, onDelete, active} = this.props
         const {path, name} = dictionary

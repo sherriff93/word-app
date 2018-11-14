@@ -6,17 +6,7 @@ import Dictionary from './Dictionary'
 import Popup from './Popup'
 import {addDictionary} from '../actions/actions' // TODO Delete spaces in all files
 
-class App extends Component {
-    
-    constructor() {
-        super()
-        this.state = { activeIndex: 0 };
-        this.addDictionary = this.addDictionary.bind(this)
-    }
-    
-    render() {
-        
-        injectGlobal `
+injectGlobal `
             :root {
               --red: #b00;
             }
@@ -36,8 +26,7 @@ class App extends Component {
                 height: 100%;
             }
         `
-        
-        const GridContainer = styled.div `
+const GridContainer = styled.div `
             height: 100%;
             display: grid;
             grid-auto-columns: 300px auto;
@@ -46,19 +35,17 @@ class App extends Component {
                 'header header'
                 'sidebar main'
         `
-        
-        const Main = styled.div `
+const Main = styled.div `
             grid-area: main;
         `
-        
-        const Header = styled.div `
+const Header = styled.div `
             grid-area: header;
             background: var(--red);
             z-index: 1;
             box-shadow: 0 0 10px grey;
         `
-        // TODO Get rid of box shadow between sidebar and header
-        const Sidebar = styled.div `
+// TODO Get rid of box shadow between sidebar and header
+const Sidebar = styled.div `
             grid-area: sidebar;
             background: #f0f0f0;
             box-shadow: 0 0 10px grey;
@@ -68,10 +55,19 @@ class App extends Component {
                 padding: 0;
             }
         `
-
-        const OuterContainer = styled.div `
+const OuterContainer = styled.div `
             height: 100%;
         `
+
+class App extends Component {
+    
+    constructor() {
+        super()
+        this.state = { activeIndex: 0 };
+        this.addDictionary = this.addDictionary.bind(this)
+    }
+    
+    render() {
         
         const {dictionaries} = this.props
         return (

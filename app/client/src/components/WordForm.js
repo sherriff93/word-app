@@ -2,6 +2,16 @@ import React, {Component} from 'react'
 // import {connect} from 'react-redux'
 import styled from 'styled-components'
 
+const TextInput = styled.input `
+            width: 40%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        `
+
 class WordForm extends Component {
     constructor(props) {//TODO Difference here between constructor and render?
         console.log('wordform constructor')
@@ -18,16 +28,6 @@ class WordForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     render() {
-
-        const TextInput = styled.input `
-            width: 40%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        `
         
         console.log('wordform rerender')
         const {values} = this.state
