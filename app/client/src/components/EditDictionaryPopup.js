@@ -9,6 +9,7 @@ class Popup extends Component {
             <PopupOuter>
                 <PopupInner>
                     <h1>{this.props.text}</h1>
+                    <TextInput></TextInput>
                     <button onClick={this.props.hideCurrentPopup}>close me</button>
                     <button onClick={this.props.deleteDictionary}>close me</button>
                 </PopupInner>
