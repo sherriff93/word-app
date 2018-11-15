@@ -100,7 +100,7 @@ function insertDictionary(dictionaryName, dispatch) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            path: '/' + dictionaryName, // TODO need to urlify
+            path: '/' + dictionaryName.trim().replace(/\s/g, '%20'),
             name: dictionaryName
         },)
     })
