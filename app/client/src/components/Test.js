@@ -23,7 +23,7 @@ class Test extends Component {
     }
 
     onSubmit (guess) {
-        const {labels} = this
+        const {labels} = this // TODO is there a way to get rid of this function?
         this.props.onSubmit(guess, labels)
     }
 }

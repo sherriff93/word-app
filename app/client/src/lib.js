@@ -1,4 +1,10 @@
-import {fetchWordsSuccess, fetchWordsFail, fetchDictionariesSuccess, fetchDictionariesFail} from './actions/actions'
+import {
+    fetchWordsSuccess,
+    fetchWordsFail,
+    fetchDictionariesSuccess,
+    fetchDictionariesFail,
+    hideCurrentPopup
+} from './actions/actions'
 
 function fetchWords(dispatch) { // TODO ask: How to do an api call that puts/posts/deletes but need to then fetch a filtered set? One API call or many?
     // dispatch(fetchWordsStart()) // TODO Get rid of isLoading or make it less clunky
@@ -122,12 +128,41 @@ function deleteDictionaryById(id, dispatch) {
         .then(response => {
             if(response.status === 200){
                 response.json() // TODO What happens if this fails?
-                    .then(json => dispatch(fetchDictionariesSuccess(json)))
+                    .then(
+                        json => {
+                            dispatch(fetchDictionariesSuccess(json))
+                            dispatch(hideCurrentPopup())
+                        }
+                    )
             }
             else{
                 dispatch(fetchDictionariesFail())
             }
         })
+}
+
+function editDictionaryNameById(id, newName, dispatch) {
+    fetch('/api/dictionaries/' + id, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: newName,
+        })
+    })
+    .then(response => {
+        if(response.status === 200){
+            response.json() // TODO What happens if this fails?
+                .then(json => {
+                    dispatch(fetchDictionariesSuccess(json))
+                    dispatch(hideCurrentPopup())
+                })
+        }
+        else{
+            dispatch(fetchDictionariesFail())
+        }
+    })
 }
 
 module.exports = {
@@ -138,4 +173,5 @@ module.exports = {
     fetchDictionaries: fetchDictionaries,
     insertDictionary: insertDictionaryByName,
     deleteDictionaryById: deleteDictionaryById,
+    editDictionaryNameById: editDictionaryNameById,
 }

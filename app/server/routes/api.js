@@ -74,4 +74,13 @@ router.delete('/dictionaries/:id', function(req, res, next){
     // }).catch(next);
 });
 
+// update a dictionary
+router.put('/dictionaries/:id', function(req, res, next){
+    Dictionary.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+        Dictionary.find().then(function(dictionaries){
+            res.send(dictionaries);
+        });
+    }).catch(next);
+});
+
 module.exports = router;

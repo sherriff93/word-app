@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {hideCurrentPopup} from "../actions/actions"
-import {deleteDictionaryById} from "../lib";
+import {deleteDictionaryById, editDictionaryNameById} from "../lib";
 import {connect} from 'react-redux'
 import WordForm from "./WordForm";
 import {PopupInner, PopupOuter} from "../styles/EditDictionaryPopup";
@@ -17,7 +17,7 @@ class EditDictionaryPopup extends Component {
             <PopupOuter>
                 <PopupInner>
                     <h1>Edit Dictionary</h1>
-                    <WordForm labels={labels} onSubmit={this.props.onSubmit} />
+                    <WordForm labels={labels} onSubmit={(values) => this.props.editDictionaryNameById(this.props.dictionary._id, values)} />
                     <button onClick={this.props.hideCurrentPopup}>Close popup</button>
                     <button onClick={() => this.props.deleteDictionaryById(this.props.dictionary._id)}>Delete</button>
                 </PopupInner>
@@ -31,8 +31,8 @@ const mapDispatchToProps = function(dispatch) {
         hideCurrentPopup: () => {
             dispatch(hideCurrentPopup())
         },
-        onSubmit: () => {
-            dispatch(hideCurrentPopup())
+        editDictionaryNameById: (id, values) => {
+            editDictionaryNameById(id, values['New Name'], dispatch)
         },
         deleteDictionaryById: (id) => {
             deleteDictionaryById(id, dispatch)
