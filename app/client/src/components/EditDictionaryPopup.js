@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {hideCurrentPopup} from "../actions/actions"
-import {deleteDictionaryById, editDictionaryNameById} from "../lib";
+import {deleteDictionaryById, editDictionaryNameById} from "../lib/dictionary_functions";
 import {connect} from 'react-redux'
 import WordForm from "./WordForm";
 import {PopupInner, PopupOuter} from "../styles/EditDictionaryPopup";

@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import WordForm from './WordForm'
 import List from './List'
-import {updateWord} from '../lib'
-import {insertWord} from '../lib'
+import {updateWord, insertWord} from '../lib/word_functions'
 import {DictionaryHeader, CenteredDiv, Title, TestLink} from "../styles/DictionaryView";
 
 class DictionaryView extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {deleteWord} from '../lib'
+import {deleteWord} from '../lib/word_functions'
 
 class Item extends Component {
     render () {

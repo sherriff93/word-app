@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import DictionaryView from './DictionaryView'
 import TestWrapper from './TestWrapper'
-import {fetchWords} from '../lib'
+import {fetchWords} from '../lib/word_functions'
 
 class DictionaryMain extends Component {
     

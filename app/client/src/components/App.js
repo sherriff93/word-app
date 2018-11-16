@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import EditDictionaryPopup from './EditDictionaryPopup'
-import {fetchDictionaries, insertDictionary} from "../lib";
+import {fetchDictionaries, insertDictionary} from "../lib/dictionary_functions";
 import {GridContainer, Main, Header, Sidebar, OuterContainer} from "../styles/App";
 
 class App extends Component {
