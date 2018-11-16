@@ -93,7 +93,7 @@ function fetchDictionaries(dispatch) {
     })
 }
 
-function insertDictionary(dictionaryName, dispatch) {
+function insertDictionaryByName(dictionaryName, dispatch) {
     fetch('/api/dictionaries', {
         method: 'POST',
         headers: {
@@ -115,8 +115,8 @@ function insertDictionary(dictionaryName, dispatch) {
         })
 }
 
-function deleteDictionary(dictionary, dispatch) {
-    fetch('/api/dictionaries/' + dictionary._id, {
+function deleteDictionaryById(id, dispatch) {
+    fetch('/api/dictionaries/' + id, {
         method: 'DELETE'
     })
         .then(response => {
@@ -136,6 +136,6 @@ module.exports = {
     deleteWord: deleteWord,
     updateWord: updateWord,
     fetchDictionaries: fetchDictionaries,
-    insertDictionary: insertDictionary,
-    deleteDictionary: deleteDictionary,
+    insertDictionary: insertDictionaryByName,
+    deleteDictionaryById: deleteDictionaryById,
 }

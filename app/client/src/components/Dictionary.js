@@ -22,7 +22,7 @@ class Dictionary extends Component {
                     </BookIcon>
                     {name}
                     <EditIcon>
-                        <FontAwesomeIcon onClick={(dictionary) => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
+                        <FontAwesomeIcon onClick={() => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
                     </EditIcon>
                 </CenteredDiv>
             </StyledLink>
