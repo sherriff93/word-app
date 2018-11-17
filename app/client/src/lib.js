@@ -17,7 +17,7 @@ module.exports = {
 
 module.exports = {
     fetchDictionaries: fetchDictionaries,
-    insertDictionary: insertDictionaryByName,
+    insertDictionaryByName: insertDictionaryByName,
     deleteDictionaryById: deleteDictionaryById,
     editDictionaryNameById: editDictionaryNameById,
 }

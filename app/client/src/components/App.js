@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import EditDictionaryPopup from './EditDictionaryPopup'
-import {fetchDictionaries, insertDictionary} from "../lib/dictionary_functions";
+import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
 import {GridContainer, Main, Header, Sidebar, OuterContainer} from "../styles/App";
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
                         </Header>
                         <Sidebar>
                             {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
-                            <span className="delete" onClick={this.props.insertDictionary}>
+                            <span className="delete" onClick={this.props.insertDictionaryByName}>
                                 Add Dictionary
                             </span>
                         </Sidebar>
@@ -67,9 +67,9 @@ const mapDispatchToProps = function(dispatch) {
         populate: () => {
             fetchDictionaries(dispatch)
         },
-        insertDictionary: () => {
+        insertDictionaryByName: () => {
             const dictionaryName = prompt()
-            insertDictionary(dictionaryName, dispatch)
+            insertDictionaryByName(dictionaryName, dispatch)
         }
     }
 }

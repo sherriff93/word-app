@@ -51,7 +51,7 @@ const AppReducer = function (state = initialState, action) {
                 dictionaries: action.dictionaries.map((dictionary) => {
                     return {
                         ...dictionary,
-                        main: ({match}) => (<DictionaryMain name={dictionary.name} match={match}/>)
+                        main: ({match}) => (<DictionaryMain name={dictionary.name} match={match}/>),
                     }
                 }),
                 // isLoading: false // TODO isLoading? Here and in the fail function

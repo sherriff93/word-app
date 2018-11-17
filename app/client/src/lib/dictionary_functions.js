@@ -1,4 +1,5 @@
 import {fetchDictionariesFail, fetchDictionariesSuccess, hideCurrentPopup} from "../actions/actions";
+import React from "react";
 
 function fetchDictionaries(dispatch) {
     fetch('/api/dictionaries')
@@ -14,14 +15,15 @@ function fetchDictionaries(dispatch) {
 }
 
 function insertDictionaryByName(dictionaryName, dispatch) {
+    const dictionaryNameFormatted = dictionaryName.charAt(0).toUpperCase() + dictionaryName.slice(1)
     fetch('/api/dictionaries', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            path: '/' + dictionaryName.trim().replace(/\s/g, '%20'),
-            name: dictionaryName
+            path: '/' + encodeURI(dictionaryName),
+            name: dictionaryNameFormatted,
         },)
     })
         .then(response => {
@@ -81,7 +83,7 @@ function editDictionaryNameById(id, newName, dispatch) {
 
 module.exports = {
     fetchDictionaries: fetchDictionaries,
-    insertDictionary: insertDictionaryByName,
+    insertDictionaryByName: insertDictionaryByName,
     deleteDictionaryById: deleteDictionaryById,
     editDictionaryNameById: editDictionaryNameById,
 }
