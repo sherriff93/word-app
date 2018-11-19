@@ -11,31 +11,21 @@ import PasswordForgetPage from './PasswordForget';
 import HomePage from './LogoPage';
 import AccountPage from './Account';
 import AdminPage from './Admin';
+import withAuthentication from './Session/WithAuthentication';
 import * as ROUTES from '../route_types';
-import {firebase} from '../firebase';
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
 import {GridContainer, Main, Header, Sidebar, OuterContainer} from "../styles/App";
 
 class App extends Component {
 
     componentDidMount(){
-        this.listener = firebase.auth.onAuthStateChanged(authUser => {
-            authUser
-                ? this.setState({ authUser })
-                : this.setState({ authUser: null });
-        });
-        this.props.populate() // Is this still correct with the above there?
-    }
-
-    componentWillUnmount() {
-        this.listener();
+        this.props.populate() // Is this still correct with higher order component above?
     }
     
     constructor(props) {
         super(props)
         this.state = { 
-            activeIndex: 0,
-            authUser: null
+            activeIndex: 0
         }
     }
     
@@ -49,9 +39,9 @@ class App extends Component {
                     {/*<Route exact path={ROUTES.LANDING} component={LandingPage} /> /!*TODO refactor*!/*/}
                     <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-                    {/*<Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />*/}
-                    {/*<Route exact path={ROUTES.HOME} component={HomePage} />*/}
-                    {/*<Route exact path={ROUTES.ACCOUNT} component={AccountPage} />*/}
+                    <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+                    <Route exact path={ROUTES.HOME} component={HomePage} />
+                    <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
                     {/*<Route exact path={ROUTES.ADMIN} component={AdminPage} />*/}
                     <GridContainer>
                         <Header>
@@ -104,4 +94,5 @@ const mapDispatchToProps = function(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(App));
