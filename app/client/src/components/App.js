@@ -11,20 +11,32 @@ import PasswordForgetPage from './PasswordForget';
 import HomePage from './LogoPage';
 import AccountPage from './Account';
 import AdminPage from './Admin';
-
 import * as ROUTES from '../route_types';
+import {firebase} from '../firebase';
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
 import {GridContainer, Main, Header, Sidebar, OuterContainer} from "../styles/App";
 
 class App extends Component {
 
     componentDidMount(){
-        this.props.populate()
+        this.listener = firebase.auth.onAuthStateChanged(authUser => {
+            authUser
+                ? this.setState({ authUser })
+                : this.setState({ authUser: null });
+        });
+        this.props.populate() // Is this still correct with the above there?
+    }
+
+    componentWillUnmount() {
+        this.listener();
     }
     
-    constructor() {
-        super()
-        this.state = { activeIndex: 0 };
+    constructor(props) {
+        super(props)
+        this.state = { 
+            activeIndex: 0,
+            authUser: null
+        }
     }
     
     render() {
@@ -33,7 +45,7 @@ class App extends Component {
         return (
             <Router>
                 <OuterContainer>
-                    <Navigation />
+                    <Navigation authUser={this.state.authUser} />
                     {/*<Route exact path={ROUTES.LANDING} component={LandingPage} /> /!*TODO refactor*!/*/}
                     <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
