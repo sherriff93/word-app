@@ -1,8 +1,7 @@
 import {fetchDictionariesFail, fetchDictionariesSuccess, hideCurrentPopup} from "../actions/actions";
-import React from "react";
 
 function fetchDictionaries(dispatch) {
-    fetch('/api/dictionaries')
+    fetch('/routes/dictionaries')
         .then(response => {
             if(response.status === 200){
                 response.json() // TODO What happens if this fails?
@@ -16,7 +15,7 @@ function fetchDictionaries(dispatch) {
 
 function insertDictionaryByName(dictionaryName, dispatch) {
     const dictionaryNameFormatted = dictionaryName.charAt(0).toUpperCase() + dictionaryName.slice(1)
-    fetch('/api/dictionaries', {
+    fetch('/routes/dictionaries', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,7 +37,7 @@ function insertDictionaryByName(dictionaryName, dispatch) {
 }
 
 function deleteDictionaryById(id, dispatch) {
-    fetch('/api/dictionaries/' + id, {
+    fetch('/routes/dictionaries/' + id, {
         method: 'DELETE'
     })
         .then(response => {
@@ -58,7 +57,7 @@ function deleteDictionaryById(id, dispatch) {
 }
 
 function editDictionaryNameById(id, newName, dispatch) {
-    fetch('/api/dictionaries/' + id, {
+    fetch('/routes/dictionaries/' + id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

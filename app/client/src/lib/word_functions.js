@@ -1,8 +1,8 @@
 import {fetchWordsFail, fetchWordsSuccess} from "../actions/actions";
 
-function fetchWords(dispatch) { // TODO ask: How to do an api call that puts/posts/deletes but need to then fetch a filtered set? One API call or many?
+function fetchWords(dispatch) { // TODO ask: How to do an routes call that puts/posts/deletes but need to then fetch a filtered set? One API call or many?
     // dispatch(fetchWordsStart()) // TODO Get rid of isLoading or make it less clunky
-    fetch('/api/words')
+    fetch('/routes/words')
         .then(response => {
             if(response.status === 200){
                 response.json() // TODO What happens if this fails?
@@ -16,7 +16,7 @@ function fetchWords(dispatch) { // TODO ask: How to do an api call that puts/pos
 
 function insertWord(values, dictionaryName, dispatch) {
     // dispatch(fetchWordsStart())
-    fetch('/api/words', {
+    fetch('/routes/words', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ function insertWord(values, dictionaryName, dispatch) {
 
 function deleteWord(item, dispatch) {
     // dispatch(fetchWordsStart())
-    fetch('/api/words/' + item._id, {
+    fetch('/routes/words/' + item._id, {
         method: 'DELETE'
     })
         .then(response => {
@@ -57,7 +57,7 @@ function deleteWord(item, dispatch) {
 
 function updateWord(existingItem, values, dictionaryName, dispatch) {
     // dispatch(fetchWordsStart())
-    fetch('/api/words/' + existingItem._id, {
+    fetch('/routes/words/' + existingItem._id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

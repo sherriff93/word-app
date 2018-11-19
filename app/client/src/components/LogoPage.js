@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import logo from '../logo.svg';
-import {App, AppHeader, AppLogo, AppIntro} from "../styles/Home";
+import {App, AppHeader, AppLogo, AppIntro} from "../styles/LogoPage";
 
-class Home extends Component {
+class LogoPage extends Component {
   render() {
           
     return (
@@ -20,4 +20,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default LogoPage

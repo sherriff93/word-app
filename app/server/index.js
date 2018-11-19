@@ -26,8 +26,8 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // initialize routes
-app.use('/api/words', require('./routes/api_word'));
-app.use('/api/dictionaries', require('./routes/api_dictionary'));
+app.use('/routes/words', require('./routes/api_word'));
+app.use('/routes/dictionaries', require('./routes/api_dictionary'));
 
 // error handling middleware
 app.use(function(err, req, res, next){
