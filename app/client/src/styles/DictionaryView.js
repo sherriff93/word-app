@@ -18,10 +18,10 @@ export const HeaderSection = styled.div `
             background: ${props => props.active ? '#ff6e00' : 'transparent'}
             padding: 10px;
         `
-export const Title = HeaderSection.extend `
+export const Title = styled(HeaderSection) `
             
         `
 export const HeaderLink = HeaderSection.withComponent(Link)
-export const TestLink = HeaderLink.extend `
+export const TestLink = styled(HeaderLink) `
             float: right;
         `
