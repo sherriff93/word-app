@@ -4,6 +4,8 @@ import {Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
 import {GridContainer, Main, Header, Sidebar} from "../styles/Home";
+import withAuthorization from "./Session/WithAuthorization";
+import {IS_SIGNED_IN} from "../authConditions";
 
 class Home extends Component {
 
@@ -63,5 +65,4 @@ const mapDispatchToProps = function(dispatch) {
     }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthorization(IS_SIGNED_IN)(Home));

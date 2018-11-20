@@ -11,6 +11,7 @@ import AccountPage from "./Account";
 import EditDictionaryPopup from "./EditDictionaryPopup";
 import withAuthentication from "./Session/WithAuthentication";
 import Home from "./Home"
+import Admin from "./Admin";
 
 const App = (props) =>
         <Router>
@@ -22,7 +23,7 @@ const App = (props) =>
                 <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
                 <Route exact path={ROUTES.HOME} component={Home} />
                 <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
-                {/*<Route exact path={ROUTES.ADMIN} component={AdminPage} />*/}
+                <Route exact path={ROUTES.ADMIN} component={Admin} />
                 {props.showPopupWithParams ?
                     <EditDictionaryPopup
                         dictionary={props.showPopupWithParams.dictionary}

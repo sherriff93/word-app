@@ -1,8 +1,9 @@
 import React from 'react';
-
 import AuthUserContext from './Session/AuthUserContext';
 import { PasswordForgetForm } from './PasswordForget';
 import PasswordChangeForm from './PasswordChange';
+import withAuthorization from "./Session/WithAuthorization";
+import {IS_SIGNED_IN} from "../authConditions";
 
 const AccountPage = () =>
     <AuthUserContext.Consumer>
@@ -15,4 +16,4 @@ const AccountPage = () =>
         }
     </AuthUserContext.Consumer>
 
-export default AccountPage;
+export default withAuthorization(IS_SIGNED_IN)(AccountPage);
