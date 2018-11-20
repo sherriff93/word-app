@@ -7,7 +7,7 @@ const initialState = {
     showPopupWithParams: null
 }
 
-const AppReducer = function (state = initialState, action) {
+const homeReducer = function (state = initialState, action) {
     let newState = null
     let {dictionaries, showPopupWithParams} = state
     switch (action.type) {
@@ -71,4 +71,4 @@ const AppReducer = function (state = initialState, action) {
     return newState
 }
 
-export default AppReducer
+export default homeReducer
