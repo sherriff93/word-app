@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {OuterContainer} from "../styles/Yyyy";
+import {OuterContainer} from "../styles/App";
 import Navigation from "./Navigation";
 import * as ROUTES from "../route_types";
 import SignUpPage from "./SignUp";
@@ -12,7 +12,7 @@ import EditDictionaryPopup from "./EditDictionaryPopup";
 import withAuthentication from "./Session/WithAuthentication";
 import Home from "./Home"
 
-const Yyyy = (props) =>
+const App = (props) =>
         <Router>
             <OuterContainer>
                 <Navigation />
@@ -35,9 +35,9 @@ const Yyyy = (props) =>
 
 const mapStateToProps = function(store) {
     return {
-        showPopupWithParams: store.yyyyState.showPopupWithParams
+        showPopupWithParams: store.appState.showPopupWithParams
     }
 }
 
-export default connect(mapStateToProps)(withAuthentication(Yyyy))
+export default connect(mapStateToProps)(withAuthentication(App))
 

@@ -5,7 +5,7 @@ const initialState = {
     showPopupWithParams: null
 }
 
-const yyyyReducer = function (state = initialState, action) {
+const appReducer = function (state = initialState, action) {
     let newState = null
     let {showPopupWithParams} = state
     switch (action.type) {
@@ -29,4 +29,4 @@ const yyyyReducer = function (state = initialState, action) {
     return newState
 }
 
-export default yyyyReducer
+export default appReducer

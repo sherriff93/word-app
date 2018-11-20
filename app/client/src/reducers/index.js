@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 
 // Reducers
 import dictionaryMainReducer from './dictionary-main-reducer'
-import yyyyReducer from './yyyy-reducer'
+import appReducer from './app-reducer'
 import homeReducer from './home-reducer'
 import testWrapperReducer from './test-wrapper-reducer'
 import fontawesome from '@fortawesome/fontawesome'
@@ -14,7 +14,7 @@ fontawesome.library.add(faBook, faEdit)
 // Combine Reducers
 var reducers = combineReducers({
     dictionaryMainState: dictionaryMainReducer,
-    yyyyState: yyyyReducer,
+    appState: appReducer,
     homeState: homeReducer,
     testWrapperState: testWrapperReducer
 })
