@@ -3,8 +3,7 @@ import * as types from '../actions/action-types'
 import DictionaryMain from '../components/DictionaryMain'
 
 const initialState = {
-    dictionaries: [],
-    showPopupWithParams: null
+    dictionaries: []
 }
 
 const homeReducer = function (state = initialState, action) {

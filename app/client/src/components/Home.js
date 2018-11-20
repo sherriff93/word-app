@@ -21,21 +21,20 @@ class Home extends Component {
     }
     
     render() {
-        
-        const {dictionaries} = this.props
+        const {dictionaries, match} = this.props
         return (
             <GridContainer>
                 <Header>
                 </Header>
                 <Sidebar>
-                    {dictionaries.map((dictionary, index) => (<Dictionary key={index} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
+                    {dictionaries.map((dictionary, index) => (<Dictionary key={index} matchPath={match.path} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
                     <span className="delete" onClick={this.props.insertDictionaryByName}>
                         Add Dictionary
                     </span>
                 </Sidebar>
                 
                 <Main>
-                    {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
+                    {dictionaries.map((dictionary, index) => (<Route key={index} path={match.path + dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
         )

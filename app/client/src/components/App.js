@@ -12,18 +12,47 @@ import EditDictionaryPopup from "./EditDictionaryPopup";
 import withAuthentication from "./Session/WithAuthentication";
 import Home from "./Home"
 import Admin from "./Admin";
+import LandingPage from "./Landing";
+import DictionaryMain from "./DictionaryMain";
 
-const App = (props) =>
+const App = (props) => {
+    const routes = [
+        {
+            path: ROUTES.LANDING,
+            component: LandingPage,
+            exact: true
+        },
+        {
+            path: ROUTES.SIGN_UP,
+            component: SignUpPage
+        },
+        {
+            path: ROUTES.SIGN_IN,
+            component: SignInPage
+        },
+        {
+            path: ROUTES.PASSWORD_FORGET,
+            component: PasswordForgetPage
+        },
+        {
+            path: ROUTES.HOME,
+            component: Home
+        },
+        {
+            path: ROUTES.ACCOUNT,
+            component: AccountPage
+        },
+        {
+            path: ROUTES.ADMIN,
+            component: Admin
+        }
+    ]
+    
+    return (
         <Router>
             <OuterContainer>
                 <Navigation />
-                {/*<Route exact path={ROUTES.LANDING} component={LandingPage} /> /!*TODO refactor*!/*/}
-                <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
-                <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-                <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-                <Route exact path={ROUTES.HOME} component={Home} />
-                <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
-                <Route exact path={ROUTES.ADMIN} component={Admin} />
+                {routes.map((route, index) => (<Route key={index} path={route.path} exact={route.exact} component={route.component}/>))}
                 {props.showPopupWithParams ?
                     <EditDictionaryPopup
                         dictionary={props.showPopupWithParams.dictionary}
@@ -33,6 +62,9 @@ const App = (props) =>
                 }
             </OuterContainer>
         </Router>
+    )
+}
+        
 
 const mapStateToProps = function(store) {
     return {

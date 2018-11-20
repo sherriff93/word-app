@@ -12,15 +12,15 @@ class Dictionary extends Component {
     
     render () {
 
-        const {dictionary, active} = this.props
-        const {path, name} = dictionary
+        const {dictionary, active, matchPath} = this.props
+        const fullPath = matchPath + dictionary.path
         return (
-            <StyledLink active={active} onClick={this.props.onClick} to={path}>
+            <StyledLink active={active} onClick={this.props.onClick} to={fullPath}>
                 <CenteredDiv>
                     <BookIcon>
                         <FontAwesomeIcon icon="book" color="grey"/>
                     </BookIcon>
-                    {name}
+                    {dictionary.name}
                     <EditIcon>
                         <FontAwesomeIcon onClick={() => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
                     </EditIcon>

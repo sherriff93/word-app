@@ -9,8 +9,6 @@ export const DictionaryHeader = styled.div `
 export const CenteredDiv = styled.div `
             align-self: center;
         `
-export const StyledLink = styled(Link) `
-        `
 export const HeaderSection = styled.div `
             display: inline-block;
             color: black;
