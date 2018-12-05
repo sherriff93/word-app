@@ -14,6 +14,7 @@ import Home from "./Home"
 import Admin from "./Admin";
 import LandingPage from "./Landing";
 import DictionaryMain from "./DictionaryMain";
+import {deleteDictionary, showEditDictionaryPopup} from "../actions/actions";
 
 const App = (props) => {
     const routes = [
@@ -72,5 +73,13 @@ const mapStateToProps = function(store) {
     }
 }
 
-export default connect(mapStateToProps)(withAuthentication(App))
+const mapDispatchToProps = function(dispatch) {
+    return {
+        showEditDictionaryPopup: (dictionary) => {
+            dispatch(showEditDictionaryPopup(dictionary))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(App))
 
