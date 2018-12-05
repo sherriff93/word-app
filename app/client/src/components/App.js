@@ -57,7 +57,6 @@ const App = (props) => {
                 {props.showPopupWithParams ?
                     <EditDictionaryPopup
                         dictionary={props.showPopupWithParams.dictionary}
-                        closePopup={this.showEditDictionaryPopup}
                     />
                     : null
                 }
