@@ -1,13 +1,10 @@
 import React from 'react';
-
+import {OuterContainer} from "../styles/SignOut";
 import {auth} from '../firebase';
 
 const SignOutButton = () =>
-    <button
-        type="button"
-        onClick={auth.doSignOut}
-    >
+    <OuterContainer className="dropdown-item" onClick={auth.doSignOut}>
         Sign Out
-    </button>
+    </OuterContainer>
 
 export default SignOutButton;

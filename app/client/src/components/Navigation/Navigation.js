@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import AuthUserContext from '../Session/AuthUserContext';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../route_types';
-import {Button, ButtonContainer} from "../../styles/Navigation/Navigation";
+import {Button, ButtonContainer, StyledLink, StyledItem} from "../../styles/Navigation/Navigation";
 
 class Navigation extends Component {
     constructor() {
@@ -19,13 +19,13 @@ class Navigation extends Component {
     
     render() {
         return (
-            <div>
+            <div className="dropdown">
                 <ButtonContainer>
-                    <Button className="btn btn-success" onClick={this.showMenu}>Show Menu</Button>
+                    <Button className="btn btn-success dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.showMenu}>Show Menu</Button>
                 </ButtonContainer>
                 {this.state.showMenu
                     ? (
-                        <div className="menu" ref={(element) => {this.dropdownMenu = element}}>
+                        <div className="menu">
                             <AuthUserContext.Consumer>
                                 {authUser => authUser
                                     ? <NavigationAuth/>
@@ -41,29 +41,27 @@ class Navigation extends Component {
 
     showMenu(e) {
         e.preventDefault();
-
+        
         this.setState({ showMenu: true }, () => {
             document.addEventListener('click', this.hideMenu);
         });
     }
 
     hideMenu() {
-        if (!this.dropdownMenu.contains(event.target)) {
-            this.setState({showMenu: false}, () => {
-                document.removeEventListener('click', this.hideMenu);
-            });
-        }
+        this.setState({ showMenu: false }, () => {
+            document.removeEventListener('click', this.hideMenu);
+        });
     }
 }
 
 const NavigationAuth = () =>
-    <ul>
-        <li><Link to={ROUTES.LANDING}>Landing</Link></li>
-        <li><Link to={ROUTES.HOME}>Home</Link></li>
-        <li><Link to={ROUTES.ACCOUNT}>Account</Link></li>
-        <li><Link to={ROUTES.ADMIN}>Admin</Link></li>
-        <li><SignOutButton /></li>
-    </ul>
+    <div className="dropdown-menu show">
+        <StyledLink className="dropdown-item" to={ROUTES.LANDING}>Landing</StyledLink>
+        <StyledLink className="dropdown-item" to={ROUTES.HOME}>Home</StyledLink>
+        <StyledLink className="dropdown-item" to={ROUTES.ACCOUNT}>Account</StyledLink>
+        <StyledLink className="dropdown-item" to={ROUTES.ADMIN}>Admin</StyledLink>
+        <SignOutButton />
+    </div>
 
 const NavigationNonAuth = () =>
     <ul>
