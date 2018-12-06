@@ -4,6 +4,7 @@ import React from 'react';
 
 export const CenteredDiv = styled.div `
             align-self: center;
+            color: var(--sidebarTextColour);
         `
 export const StyledLink = styled(({ active, ...rest }) => <Link {...rest} />) `
             font-size: 15px;
@@ -13,7 +14,10 @@ export const StyledLink = styled(({ active, ...rest }) => <Link {...rest} />) `
             padding: 10px;
             height: 40px;
             display: grid;
-            background: ${props => props.active ? '#ff6e00' : 'transparent'}
+            &:hover {
+                background: var(--dictionaryHoverBackgroundColour);
+            }
+            background: ${props => props.active ? 'var(--dictionarySelectedBackgroundColour)' : 'transparent'}
         `
 export const BookIcon = styled.span `
             margin-right: 10px;

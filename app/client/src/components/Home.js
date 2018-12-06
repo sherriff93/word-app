@@ -3,9 +3,12 @@ import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
-import {GridContainer, Main, Header, Sidebar} from "../styles/Home";
+import {GridContainer, Main, Header, Sidebar, Button, ButtonContainer, Logo} from "../styles/Home";
 import withAuthorization from "./Session/WithAuthorization";
 import {IS_SIGNED_IN} from "../authConditions";
+import HeaderNavigation from "./Navigation/HeaderNavigation"
+import {StyledLink} from "../styles/Dictionary";
+import {OuterContainer} from "../styles/Navigation/HeaderNavigation";
 
 class Home extends Component {
 
@@ -19,18 +22,20 @@ class Home extends Component {
             activeIndex: 0
         }
     }
-    
+    // TODO convert logo to svg
     render() {
         const {dictionaries, match} = this.props
         return (
             <GridContainer>
                 <Header>
+                    <Logo />
+                    <HeaderNavigation />
                 </Header>
                 <Sidebar>
+                    <ButtonContainer>
+                        <Button className="btn btn-success" onClick={this.props.insertDictionaryByName}>Add Dictionary</Button>
+                    </ButtonContainer>
                     {dictionaries.map((dictionary, index) => (<Dictionary key={index} matchPath={match.path} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
-                    <span className="delete" onClick={this.props.insertDictionaryByName}>
-                        Add Dictionary
-                    </span>
                 </Sidebar>
                 
                 <Main>

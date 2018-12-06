@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
 import {CenteredDiv, StyledLink, BookIcon, EditIcon} from "../styles/Dictionary";
+import AuthUserContext from "./Session/AuthUserContext";
 
 class Dictionary extends Component {
     constructor(props) {
@@ -20,7 +21,11 @@ class Dictionary extends Component {
                     <BookIcon>
                         <FontAwesomeIcon icon="book" color="grey"/>
                     </BookIcon>
-                    {dictionary.name}
+                    {this.props.active
+                        ? (
+                            <strong>{dictionary.name}</strong>
+                        ) : dictionary.name
+                    }
                     <EditIcon>
                         <FontAwesomeIcon onClick={() => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
                     </EditIcon>

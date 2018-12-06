@@ -2,7 +2,13 @@ import styled, {injectGlobal} from 'styled-components'
 
 export default injectGlobal `
             :root {
-              --red: #b00;
+              --headerBackgroundColour: #1E252F;
+              --sidebarBackgroundColour: #2C3645;
+              --sidebarTextColour: white;
+              --mainBackgroundColour: #F4F5F8;
+              --dictionaryHoverBackgroundColour: #455265
+              --dictionarySelectedBackgroundColour: #1E252F
+              --dictionaryMainBackgroundColour: #4988b7
             }
             
             body {

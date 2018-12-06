@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {OuterContainer} from "../styles/App";
-import Navigation from "./Navigation";
 import * as ROUTES from "../route_types";
 import SignUpPage from "./SignUp";
 import SignInPage from "./SignIn";
@@ -52,7 +51,6 @@ const App = (props) => {
     return (
         <Router>
             <OuterContainer>
-                <Navigation />
                 {routes.map((route, index) => (<Route key={index} path={route.path} exact={route.exact} component={route.component}/>))}
                 {props.showPopupWithParams ?
                     <EditDictionaryPopup
