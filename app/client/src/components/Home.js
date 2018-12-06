@@ -39,7 +39,7 @@ class Home extends Component {
                 </Sidebar>
                 
                 <Main>
-                    {dictionaries.map((dictionary, index) => (<Route key={index} path={match.path + dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
+                    {dictionaries.map((dictionary, index) => (<Route key={index} path={match.path + decodeURI(dictionary.path)} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
         )
