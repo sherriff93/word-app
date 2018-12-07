@@ -13,6 +13,7 @@ import PasswordForgetPage from "./PasswordForget";
 import HomeLoggedIn from "./HomeLoggedIn";
 import AccountPage from "./Account";
 import Admin from "./Admin";
+import {withRouter} from 'react-router-dom';
 
 const HomeLoggedOut = () => {
     const routes = [
@@ -56,4 +57,4 @@ const HomeLoggedOut = () => {
     );
 };
 
-export default HomeLoggedOut;
+export default withRouter(HomeLoggedOut);

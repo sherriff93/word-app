@@ -10,6 +10,7 @@ import HeaderNavigation from "./Navigation/HeaderNavigation"
 import {StyledLink} from "../styles/Dictionary";
 import { firebase } from '../firebase';
 import {OuterContainer} from "../styles/Navigation/HeaderNavigation";
+import {withRouter} from 'react-router-dom';
 
 class HomeLoggedIn extends Component {
 
@@ -40,7 +41,7 @@ class HomeLoggedIn extends Component {
                 </Sidebar>
                 
                 <Main>
-                    {dictionaries.map((dictionary, index) => (<Route key={index} path={match.path + decodeURI(dictionary.path)} exact={dictionary.exact} component={dictionary.main}/>))}
+                    {dictionaries.map((dictionary, index) => (<Route key={index} path={decodeURI(dictionary.path)} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
         )
@@ -70,4 +71,4 @@ const mapDispatchToProps = function(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthorization(IS_SIGNED_IN)(HomeLoggedIn));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAuthorization(IS_SIGNED_IN)(HomeLoggedIn))); // TODO use the compose package to do this

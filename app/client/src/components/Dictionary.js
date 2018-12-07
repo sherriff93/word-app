@@ -14,7 +14,7 @@ class Dictionary extends Component {
     render () {
 
         const {dictionary, active, matchPath} = this.props
-        const fullPath = matchPath + dictionary.path
+        const fullPath = dictionary.path
         return (
             <StyledLink active={active} onClick={this.props.onClick} to={fullPath}>
                 <CenteredDiv>
