@@ -1,11 +1,14 @@
 import React from 'react';
-import Navigation from "./Navigation/Navigation";
+import HeaderNavigation from "./Navigation/HeaderNavigation";
+import Dictionary from "./Dictionary";
+import {GridContainer, Header, Logo, Main, LogoLarge} from "../styles/Landing";
 
-const LandingPage = () =>
-    <div>
-        <Navigation />
-        <h1>Landing</h1>
-        <p>This is the landing page.</p>
-    </div>
+const Landing = () => {
+    return (
+        <div>
+            <LogoLarge />
+        </div>
+    );
+};
 
-export default LandingPage;
+export default Landing;

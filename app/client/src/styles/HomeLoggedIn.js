@@ -9,15 +9,6 @@ export const GridContainer = styled.div `
                 'header header'
                 'sidebar main'
         `
-export const Main = styled.div `
-            grid-area: main;
-            background: var(--mainBackgroundColour);
-        `
-export const Header = styled.div `
-            grid-area: header;
-            background: var(--headerBackgroundColour);
-            z-index: 1;
-        `
 // TODO Get rid of box shadow between sidebar and header
 export const Sidebar = styled.div `
             color: var(--sidebarTextColour);
@@ -39,15 +30,18 @@ export const ButtonContainer = styled.span `
             align-items: center;
             justify-content: center;
         `
-export const Logo = styled.div `
-            height: 100%;
-            width: 100px;
-            margin-left: 20px;
-            position: relative;
-            float: left;
-            align-items: center;
-            background-image: url(/images/fluency.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100px; 
+export const Main = styled.div `
+            grid-area: main;
+            background: var(--mainBackgroundColour);
         `
+export {Header, Logo} from "../globalStyles";
+
+
+
+
+
+
+
+
+
+

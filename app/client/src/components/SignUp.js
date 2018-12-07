@@ -6,12 +6,17 @@ import {
 
 import { auth } from '../firebase';
 import * as ROUTES from '../route_types';
+import {Header, Logo} from "../globalStyles";
+import HeaderNavigation from "./Navigation/HeaderNavigation";
+import {GridContainer, Main} from "../styles/Landing";
+import {PasswordForgetLink} from "./PasswordForget";
+import {SignInForm} from "./SignIn";
 
 const SignUpPage = ({ history }) =>
-    <div>
-        <h1>SignUp</h1>
-        <SignUpForm history={history} />
-    </div>
+        <div>
+            <h1>SignUp</h1>
+            <SignUpForm history={history} />
+        </div>
 
 const INITIAL_STATE = {
     username: '',
@@ -42,7 +47,7 @@ class SignUpForm extends Component {
         auth.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
-                history.push(ROUTES.HOME);
+                history.push(ROUTES.LANDING);
             })
             .catch(error => {
                 this.setState({ error });

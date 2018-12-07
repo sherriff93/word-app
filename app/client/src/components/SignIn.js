@@ -4,14 +4,17 @@ import {SignUpLink} from './SignUp';
 import {PasswordForgetLink} from './PasswordForget';
 import {auth} from '../firebase';
 import * as ROUTES from '../route_types';
+import {Header, Logo} from "../globalStyles";
+import HeaderNavigation from "./Navigation/HeaderNavigation";
+import {GridContainer, LogoLarge, Main} from "../styles/Landing";
 
 const SignInPage = ({ history }) =>
-    <div>
-        <h1>SignIn</h1>
-        <SignInForm history={history} />
-        <PasswordForgetLink />
-        <SignUpLink />
-    </div>
+        <div>
+            <h1>SignIn</h1>
+            <SignInForm history={history} />
+            <PasswordForgetLink />
+            <SignUpLink />
+        </div>
 
 const INITIAL_STATE = {
     email: '',
@@ -39,7 +42,7 @@ class SignInForm extends Component {
         auth.doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                history.push(ROUTES.HOME);
+                history.push(ROUTES.LANDING);
             })
             .catch(error => {
                 this.setState({ error });

@@ -3,14 +3,15 @@ import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
-import {GridContainer, Main, Header, Sidebar, Button, ButtonContainer, Logo} from "../styles/Home";
+import {GridContainer, Main, Header, Sidebar, Button, ButtonContainer, Logo} from "../styles/HomeLoggedIn";
 import withAuthorization from "./Session/WithAuthorization";
 import {IS_SIGNED_IN} from "../authConditions";
 import HeaderNavigation from "./Navigation/HeaderNavigation"
 import {StyledLink} from "../styles/Dictionary";
+import { firebase } from '../firebase';
 import {OuterContainer} from "../styles/Navigation/HeaderNavigation";
 
-class Home extends Component {
+class HomeLoggedIn extends Component {
 
     componentDidMount(){
         this.props.populate()
@@ -69,4 +70,4 @@ const mapDispatchToProps = function(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthorization(IS_SIGNED_IN)(Home));
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthorization(IS_SIGNED_IN)(HomeLoggedIn));

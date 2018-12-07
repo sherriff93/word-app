@@ -2,7 +2,6 @@ import {auth} from './firebase';
 
 // Sign Up
 export const doCreateUserWithEmailAndPassword = function(email, password) {
-    debugger
     return auth.createUserWithEmailAndPassword(email, password);
 }
 

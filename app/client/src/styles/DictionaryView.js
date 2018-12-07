@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export const DictionaryHeader = styled.div `
             display: grid;
-            background: var(--dictionaryMainBackgroundColour);
+            background: var(--dictionaryMainHeaderBackgroundColour);
             height: 35px;
         `
 export const CenteredDiv = styled.div `
