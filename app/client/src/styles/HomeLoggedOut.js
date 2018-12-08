@@ -12,7 +12,4 @@ export const GridContainer = styled.div `
 export const Main = styled.div `
             grid-area: main;
             background: var(--dictionaryMainHeaderBackgroundColour);
-            display: flex;
-            justify-content: center;
         `
-export {Header, Logo} from "../globalStyles";

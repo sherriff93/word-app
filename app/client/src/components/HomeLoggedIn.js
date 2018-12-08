@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
+import Header from './Header'
 import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
-import {GridContainer, Main, Header, Sidebar, Button, ButtonContainer, Logo} from "../styles/HomeLoggedIn";
+import {GridContainer, Main, Sidebar, Button, ButtonContainer, Logo} from "../styles/HomeLoggedIn";
 import withAuthorization from "./Session/WithAuthorization";
 import {IS_SIGNED_IN} from "../authConditions";
-import HeaderNavigation from "./Navigation/HeaderNavigation"
 import {StyledLink} from "../styles/Dictionary";
 import { firebase } from '../firebase';
 import {OuterContainer} from "../styles/Navigation/HeaderNavigation";
@@ -29,10 +29,7 @@ class HomeLoggedIn extends Component {
         const {dictionaries, match} = this.props
         return (
             <GridContainer>
-                <Header>
-                    <Logo />
-                    <HeaderNavigation />
-                </Header>
+                <Header />
                 <Sidebar>
                     <ButtonContainer>
                         <Button className="btn btn-success" onClick={this.props.insertDictionaryByName}>Add Dictionary</Button>

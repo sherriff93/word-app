@@ -1,12 +1,11 @@
 import React from 'react';
-import {Header, Logo} from "../globalStyles";
-import HeaderNavigation from "./Navigation/HeaderNavigation";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {GridContainer, Main, SignInForm} from "../styles/HomeLoggedOut";
+import {GridContainer, Main} from "../styles/HomeLoggedOut";
 import {PasswordForgetLink} from "./PasswordForget";
 import {SignUpLink} from "./SignUp";
 import * as ROUTES from "../route_types";
 import Landing from "./Landing";
+import Header from './Header'
 import SignUpPage from "./SignUp";
 import SignInPage from "./SignIn";
 import PasswordForgetPage from "./PasswordForget";
@@ -46,10 +45,7 @@ const HomeLoggedOut = () => {
     
     return (
         <GridContainer>
-            <Header>
-                <Logo />
-                <HeaderNavigation />
-            </Header>
+            <Header />
             <Main>
                 {routes.map((route, index) => (<Route key={index} path={route.path} exact={route.exact} component={route.component}/>))}
             </Main>
