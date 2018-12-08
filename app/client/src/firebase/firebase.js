@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
 const config = {
-    apiKey: "AIzaSyCpfQxeakq7J1aGKkg8rxzmH3KqVItnYqE",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "word-app-7d570.firebaseapp.com",
     databaseURL: "https://word-app-7d570.firebaseio.com",
     projectId: "word-app-7d570",
