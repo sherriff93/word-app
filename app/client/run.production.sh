@@ -1,2 +1,2 @@
 #!/bin/sh
-cd app/client && npm run build && HTTPS=true node index.production.js
+cd app/client && npm run build && node index.production.js
