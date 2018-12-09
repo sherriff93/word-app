@@ -8,7 +8,6 @@ COPY package*.json /app/client/
 # COPY client/package.json /app/client/package.json
 
 RUN cd /app/client && npm install
-RUN ls /etc
 # WORKDIR /app
 # 
 # RUN mkdir -p /app
