@@ -3,15 +3,17 @@ services:
   client:
     restart: always
     environment:
-    - NODE_ENV=production
-    - PORT=5000
+      - NODE_ENV=production
+      - PORT=5000
     command:
-    - ./app/client/run.production.sh
+      - ./app/client/run.production.sh
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
-    - 80:5000
+      - 80:5000
   server:
     restart: always
     environment:
-    - NODE_ENV=production
+      - NODE_ENV=production
   mongodb:
     restart: always
