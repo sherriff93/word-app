@@ -11,6 +11,7 @@ services:
             - ./app/client/run.sh
         volumes:
             - ./app/client:/app/client
+            - /etc/letsencrypt/live/www.fluentlyapp.com:/etc/letsencrypt/live/www.fluentlyapp.com
             - /app/client/node_modules
         ports:
             - 3000:3000
