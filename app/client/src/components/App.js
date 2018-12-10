@@ -17,11 +17,15 @@ import DictionaryMain from "./DictionaryMain";
 import {deleteDictionary, showEditDictionaryPopup} from "../actions/actions";
 import { firebase } from '../firebase';
 import HomeLoggedIn from "./HomeLoggedIn"
+import LoadingPage from "./LoadingPage"
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {auth: false};
+        this.state = {
+            loading: true,
+            auth: false
+        };
     }
     
     componentDidMount() { // check to see if already signed in.
@@ -31,6 +35,7 @@ class App extends Component {
             } else {
                 this.setState({auth: false});
             }
+            this.setState({loading: false});
         });
     }
     
@@ -39,9 +44,13 @@ class App extends Component {
             <Router>
                 <OuterContainer>
                     {
-                        this.state.auth ?
-                            <HomeLoggedIn /> :
-                            <HomeLoggedOut />
+                        this.state.loading ?
+                            <LoadingPage />
+                        :
+                            this.state.auth ?
+                                <HomeLoggedIn /> :
+                                <HomeLoggedOut />
+                        
                     }
                     {
                         this.props.showPopupWithParams ?

@@ -13,7 +13,7 @@ export const LogoContainer = styled.div `
             float: left;
             display: flex;
             align-items: center;
-            &>img {
+            img {
                 width: 100%;
             }
     `

@@ -6,7 +6,9 @@ const Header = () => {
     return (
         <OuterContainer>
             <LogoContainer>
-                <img src='/images/fluently.svg' />
+                <a href='/'>
+                    <img src='/images/fluently.svg' />
+                </a>    
             </LogoContainer>
             <HeaderNavigation />
         </OuterContainer>
