@@ -1,16 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {deleteWord} from '../lib/word_functions'
-import {StyledItem} from "../styles/Item";
+import {StyledItem, Name, TrashIcon} from "../styles/Item";
 
 const Item = (props) => {
     const {item, onDelete} = props
     return (
         <StyledItem>
-            <div>
-                <span className="name">{item.english}</span>
-                <span className="delete" onClick={() => onDelete(item)}> x </span>
-            </div>
+            <Name className="name">{item.english}</Name>
+            <TrashIcon icon='trash' onClick={() => onDelete(item)} color='grey' />
         </StyledItem>
     )
 }

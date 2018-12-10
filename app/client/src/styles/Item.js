@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 export const StyledItem = styled.li `
             border-radius: 4px;
@@ -12,4 +13,12 @@ export const StyledItem = styled.li `
             align-items: center;
             box-shadow: 3px 3px 5px 0px #c7c7c7;
             box-sizing: border-box;
+            justify-content: space-between;
+        `
+export const Name = styled.span `
+            
+        `
+export const TrashIcon = styled(FontAwesomeIcon) `
+            cursor: pointer;
+            float: right;
         `

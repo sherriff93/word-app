@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
 import {CenteredDiv, StyledLink, BookIcon, EditIcon} from "../styles/Dictionary";
 import AuthUserContext from "./Session/AuthUserContext";
@@ -18,17 +17,13 @@ class Dictionary extends Component {
         return (
             <StyledLink active={active} onClick={this.props.onClick} to={fullPath}>
                 <CenteredDiv>
-                    <BookIcon>
-                        <FontAwesomeIcon icon="book" color="grey"/>
-                    </BookIcon>
+                    <BookIcon icon="book" color="grey"/>
                     {this.props.active
                         ? (
                             <strong>{dictionary.name}</strong>
                         ) : dictionary.name
                     }
-                    <EditIcon>
-                        <FontAwesomeIcon onClick={() => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
-                    </EditIcon>
+                    <EditIcon onClick={() => this.props.showEditDictionaryPopup(dictionary)} icon="edit" color="grey"/>
                 </CenteredDiv>
             </StyledLink>
         )
