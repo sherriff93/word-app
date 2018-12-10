@@ -64,9 +64,9 @@ const NavigationAuth = () =>
     </div>
 
 const NavigationNonAuth = () =>
-    <ul>
-        <li><Link to={ROUTES.LANDING}>Landing</Link></li>
-        <li><Link to={ROUTES.SIGN_IN}>Sign In</Link></li>
-    </ul>
+    <div className="dropdown-menu show">
+        <StyledLink className="dropdown-item" to={ROUTES.LANDING}>Landing</StyledLink>
+        <StyledLink className="dropdown-item" to={ROUTES.SIGN_IN}>Sign In</StyledLink>
+    </div>
 
 export default Navigation;
