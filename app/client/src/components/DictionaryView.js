@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import WordForm from './WordForm'
 import List from './List'
 import {updateWord, insertWord} from '../lib/word_functions'
-import {DictionaryHeader, CenteredDiv, Title, TestLink} from "../styles/DictionaryView";
-
+import {CenteredDiv, Title, StyledLink, LinkContainer} from "../styles/DictionaryView";
+import DictionaryWordForm from "./WordForm/DictionaryWordForm";
+import DictionaryHeader from './DictionaryHeader'
 class DictionaryView extends Component {
     constructor() {
         super()
@@ -16,13 +16,8 @@ class DictionaryView extends Component {
         const {labels} = this
         return (
             <div>
-                <DictionaryHeader>
-                    <CenteredDiv>
-                        <Title>{name}</Title>
-                        <TestLink to={linkPath}>Test</TestLink>
-                    </CenteredDiv>
-                </DictionaryHeader>
-                <WordForm labels={labels} onSubmit={(values) => onSubmit(items, values, name)} />
+                <DictionaryHeader linkLabel='Test' linkPath={linkPath} name={name}/>
+                <DictionaryWordForm labels={labels} onSubmit={(values) => onSubmit(items, values, name)} />
                 <List items={items} />
             </div>
         )

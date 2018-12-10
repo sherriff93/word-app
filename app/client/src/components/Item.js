@@ -1,19 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {deleteWord} from '../lib/word_functions'
+import {StyledItem} from "../styles/Item";
 
-class Item extends Component {
-    render () {
-        const {item, onDelete} = this.props
-        return (
-            <li>
-                <div className="item">
-                    <span className="name">{item.english}</span>
-                    <span className="delete" onClick={() => onDelete(item)}> x </span>
-                </div>
-            </li>
-        )
-    }
+const Item = (props) => {
+    const {item, onDelete} = props
+    return (
+        <StyledItem>
+            <div>
+                <span className="name">{item.english}</span>
+                <span className="delete" onClick={() => onDelete(item)}> x </span>
+            </div>
+        </StyledItem>
+    )
 }
 
 const mapDispatchToProps = function(dispatch) {

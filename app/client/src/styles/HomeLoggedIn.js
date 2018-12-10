@@ -22,7 +22,8 @@ export const Sidebar = styled.div `
         `
 export const Button = styled.span `
             border-radius: 50px 15px;
-            width: 70%;
+            padding-left: 50px;
+            padding-right: 50px;
         `
 export const ButtonContainer = styled.span `
             height: 100px;

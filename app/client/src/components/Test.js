@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {questionAnswered} from '../actions/actions'
-import WordForm from './WordForm'
+import TestWordForm from './WordForm/TestWordForm'
+import {TestWord} from "../styles/Test";
 
 class Test extends Component {
     constructor() {
@@ -16,8 +17,8 @@ class Test extends Component {
 
         return (
             <div>
-                <p>{english}</p>
-                <WordForm labels={labels} onSubmit={this.onSubmit} />
+                <TestWord>{english}</TestWord>
+                <TestWordForm labels={labels} onSubmit={this.onSubmit} />
             </div>
         )
     }

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {hideCurrentPopup} from "../actions/actions"
 import {deleteDictionaryById, editDictionaryNameById} from "../lib/dictionary_functions";
 import {connect} from 'react-redux'
-import WordForm from "./WordForm";
+import EditDictionaryPopupWordForm from "./WordForm/EditDictionaryPopupWordForm";
 import {PopupInner, PopupOuter} from "../styles/EditDictionaryPopup";
 
 class EditDictionaryPopup extends Component {
@@ -17,7 +17,7 @@ class EditDictionaryPopup extends Component {
             <PopupOuter>
                 <PopupInner>
                     <h1>Edit Dictionary</h1>
-                    <WordForm labels={labels} onSubmit={(values) => this.props.editDictionaryNameById(this.props.dictionary._id, values)} />
+                    <EditDictionaryPopupWordForm labels={labels} onSubmit={(values) => this.props.editDictionaryNameById(this.props.dictionary._id, values)} />
                     <button onClick={this.props.hideCurrentPopup}>Close popup</button>
                     <button onClick={() => this.props.deleteDictionaryById(this.props.dictionary._id)}>Delete</button>
                 </PopupInner>

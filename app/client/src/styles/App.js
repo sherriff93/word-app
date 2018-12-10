@@ -8,7 +8,8 @@ export default injectGlobal `
               --mainBackgroundColour: #F4F5F8;
               --dictionaryHoverBackgroundColour: #455265
               --dictionarySelectedBackgroundColour: #1E252F
-              --dictionaryMainHeaderBackgroundColour: #4188b7
+              --dictionaryMainHeaderBackgroundColour: #38475f
+              --dictionaryMainWordFormColour: #616161
             }
             
             body {

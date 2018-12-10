@@ -1,25 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Item from './Item'
+import {StyledList} from '../styles/List'
 
-class List extends Component {
-  constructor(props) {
-    super()
-  }
-
-  render () {
-    const {items} = this.props
+const List = (props) => {
+    const {items} = props
     let itemsHtml = items.map(function (item, index) {
-      return (
-        <Item key={index} item={item} />
-      )
+        return (
+            <Item key={index} item={item}/>
+        )
     })
 
     return (
-      <div id="item-list">
-        <ul>{itemsHtml}</ul>
-      </div>
+        <div>
+            <StyledList>{itemsHtml}</StyledList>
+        </div>
     )
-  }
 }
 
 export default List;

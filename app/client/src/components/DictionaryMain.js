@@ -27,7 +27,7 @@ class DictionaryMain extends Component {
             {
                 path: testPath,
                 component: () => (
-                    <TestWrapper initialItems={itemsFiltered} linkPath={dictMainPath} />
+                    <TestWrapper name={name} initialItems={itemsFiltered} linkPath={dictMainPath} />
                 )
             }
         ]

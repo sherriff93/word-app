@@ -1,25 +1,24 @@
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
-export const DictionaryHeader = styled.div `
-            display: grid;
-            background: var(--dictionaryMainHeaderBackgroundColour);
-            height: 35px;
-        `
-export const CenteredDiv = styled.div `
-            align-self: center;
-        `
 export const HeaderSection = styled.div `
             display: inline-block;
             color: black;
             text-decoration: none;
             background: ${props => props.active ? '#ff6e00' : 'transparent'}
-            padding: 10px;
+            padding: 13px 10px 10px 10px;
         `
 export const Title = styled(HeaderSection) `
-            
+            color: var(--sidebarTextColour);
         `
 export const HeaderLink = HeaderSection.withComponent(Link)
-export const TestLink = styled(HeaderLink) `
-            float: right;
+export const StyledLink = styled(Link) `
+            border-radius: 50px 15px;
+            padding-left: 30px;
+            padding-right: 30px;
+        `
+export const LinkContainer = styled.div `
+            display: flex;
+            align-items: center;
+            padding-right: 20px;
         `

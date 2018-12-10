@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 export const Button = styled.span `
             border-radius: 50px 15px;
-            width: 150px;
+            padding-left: 30px;
+            padding-right: 30px;
         `
 export const ButtonContainer = styled.div `
             height: 100%;
