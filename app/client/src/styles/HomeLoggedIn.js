@@ -33,7 +33,7 @@ export const ButtonContainer = styled.span `
         `
 export const Main = styled.div `
             grid-area: main;
-            background: var(--mainBackgroundColour);
+            background: var(--mainLoggedInBackgroundColour);
         `
 export {Header, Logo} from "../globalStyles";
 

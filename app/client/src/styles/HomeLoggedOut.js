@@ -11,5 +11,5 @@ export const GridContainer = styled.div `
         `
 export const Main = styled.div `
             grid-area: main;
-            background: var(--dictionaryMainHeaderBackgroundColour);
+            background: var(--mainLoggedOutBackgroundColour);
         `

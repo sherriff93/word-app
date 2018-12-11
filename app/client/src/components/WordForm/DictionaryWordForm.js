@@ -8,7 +8,7 @@ const DictionaryWordForm = (props) => {
     let valuesHtml = Object.keys(values).map(function (fieldName, index) {
         return (
             <StyledLabel key={index}>
-                {fieldName}
+                {fieldName}:
                 <TextInput type="text" name={fieldName} value={values[fieldName]} onChange={onChange}/>
             </StyledLabel>
         )

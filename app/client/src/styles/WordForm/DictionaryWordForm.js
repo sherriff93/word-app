@@ -24,7 +24,7 @@ export const StyledSubmit = styled.input`
             visibility: hidden;
         `
 export const StyledLabel = styled.label`
-            color: #b7b7b7;
+            color: white;
             margin: 0;
             width: 40%
         `

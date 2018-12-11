@@ -5,11 +5,12 @@ export default injectGlobal `
               --headerBackgroundColour: #1E252F;
               --sidebarBackgroundColour: #2C3645;
               --sidebarTextColour: white;
-              --mainBackgroundColour: #F4F5F8;
+              --mainLoggedInBackgroundColour: #F4F5F8
+              --mainLoggedOutBackgroundColour: #4188b7
               --dictionaryHoverBackgroundColour: #455265
               --dictionarySelectedBackgroundColour: #1E252F
               --dictionaryMainHeaderBackgroundColour: #38475f
-              --dictionaryMainWordFormColour: #616161
+              --dictionaryMainWordFormColour: #1d4975e8
             }
             
             body {
