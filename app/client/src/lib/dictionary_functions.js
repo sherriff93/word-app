@@ -14,15 +14,13 @@ function fetchDictionaries(dispatch) {
 }
 
 function insertDictionaryByName(dictionaryName, dispatch) {
-    const dictionaryNameFormatted = dictionaryName.charAt(0).toUpperCase() + dictionaryName.slice(1)
     fetch('/routes/dictionaries', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            path: '/' + encodeURI(dictionaryName),
-            name: dictionaryNameFormatted,
+            name: dictionaryName,
         },)
     })
         .then(response => {

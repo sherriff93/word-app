@@ -12,10 +12,12 @@ router.get('/', function(req, res, next){
 
 // add a new dictionary
 router.post('/', function(req, res, next){
-    Dictionary.create(req.body).then(function(){
-        Dictionary.find().then(function(dictionaries){
-            res.send(dictionaries);
-        });
+    Dictionary.create(req.body).then(function(dictionary){
+        Dictionary.findByIdAndUpdate({_id: dictionary.id}, {$set: {path: '/' + dictionary.id}}).then(function(){
+            Dictionary.find().then(function(dictionaries){
+                res.send(dictionaries);
+            })
+        }).catch(next);
     }).catch(next);
 });
 

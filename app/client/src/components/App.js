@@ -14,7 +14,7 @@ import Admin from "./Admin";
 import Landing from "./Landing";
 import HomeLoggedOut from "./HomeLoggedOut"
 import DictionaryMain from "./DictionaryMain";
-import {deleteDictionary, showEditDictionaryPopup} from "../actions/actions";
+import {showEditDictionaryPopup} from "../actions/actions";
 import { firebase } from '../firebase';
 import HomeLoggedIn from "./HomeLoggedIn"
 import LoadingPage from "./LoadingPage"
@@ -72,13 +72,5 @@ const mapStateToProps = function(store) {
     }
 }
 
-const mapDispatchToProps = function(dispatch) {
-    return {
-        showEditDictionaryPopup: (dictionary) => {
-            dispatch(showEditDictionaryPopup(dictionary))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(App))
+export default connect(mapStateToProps)(withAuthentication(App))
 

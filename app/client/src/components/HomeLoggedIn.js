@@ -38,7 +38,7 @@ class HomeLoggedIn extends Component {
                 </Sidebar>
                 
                 <Main>
-                    {dictionaries.map((dictionary, index) => (<Route key={index} path={decodeURI(dictionary.path)} exact={dictionary.exact} component={dictionary.main}/>))}
+                    {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
         )

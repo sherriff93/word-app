@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {deleteDictionary, showEditDictionaryPopup} from '../actions/actions'
+import {showEditDictionaryPopup} from '../actions/actions'
 import {CenteredDiv, StyledLink, BookIcon, EditIcon} from "../styles/Dictionary";
 import AuthUserContext from "./Session/AuthUserContext";
 
@@ -32,9 +32,6 @@ class Dictionary extends Component {
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        onDelete: (value) => { // TODO change to edit, not delete
-            dispatch(deleteDictionary(value))
-        },
         showEditDictionaryPopup: (dictionary) => {
             dispatch(showEditDictionaryPopup(dictionary))
         }

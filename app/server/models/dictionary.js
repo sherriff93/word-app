@@ -4,8 +4,7 @@ const Schema = mongoose.Schema
 // create Dictionary Schema & model
 const DictionarySchema = new Schema({
     path: {
-        type: String,
-        required: [true, 'Path field is required']
+        type: String
     },
     name: {
         type: String,

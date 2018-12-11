@@ -1,19 +1,5 @@
 import * as types from './action-types'
 
-export function addDictionary(value) {
-    return {
-        type: types.ADD_DICTIONARY,
-        value
-    }
-}
-
-export function deleteDictionary(value) {
-    return {
-        type: types.DELETE_DICTIONARY,
-        value
-    }
-}
-
 export function questionAnswered(english, isCorrect) {
     return {
         type: types.QUESTION_ANSWERED,
