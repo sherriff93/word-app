@@ -35,7 +35,6 @@ const homeLoggedInReducer = function (state = initialState, action) {
                 }),
                 // isLoading: false // TODO isLoading? Here and in the fail function
             }
-            console.log(newState)
             break
         }
         case types.FETCH_DICTIONARIES_FAIL: { // TODO is this needed if isLading isn't? Same with words

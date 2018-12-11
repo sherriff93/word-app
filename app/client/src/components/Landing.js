@@ -1,7 +1,6 @@
 import React from 'react';
-import HeaderNavigation from "./Navigation/HeaderNavigation";
-import Dictionary from "./Dictionary";
-import {Button, ButtonContainer, OuterContainer, InnerContainer, LogoContainer} from "../styles/Landing";
+import {StyledLink, LinkContainer, OuterContainer, InnerContainer, LogoContainer} from "../styles/Landing";
+import * as ROUTES from "../route_types";
 
 const Landing = () => {
     return (
@@ -10,10 +9,10 @@ const Landing = () => {
                 <LogoContainer>
                     <img src='/images/fluently.svg' />
                 </LogoContainer>
-                <ButtonContainer>
-                    <Button className="btn btn-success">Sign Up</Button>
-                    <Button className="btn btn-success">Sign In</Button>
-                </ButtonContainer>
+                <LinkContainer>
+                    <StyledLink className="btn btn-success" to={ROUTES.SIGN_UP}>Sign Up</StyledLink>
+                    <StyledLink className="btn btn-success" to={ROUTES.SIGN_IN}>Sign In</StyledLink>
+                </LinkContainer>
             </InnerContainer>
         </OuterContainer>
     );

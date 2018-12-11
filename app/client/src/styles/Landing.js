@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
-export const Button = styled.span `
+export const StyledLink = styled(Link) `
             border-radius: 50px 15px;
         `
-export const ButtonContainer = styled.span `
+export const LinkContainer = styled.span `
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             grid-column-gap: 20px;
