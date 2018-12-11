@@ -8,7 +8,6 @@
         "@fortawesome/react-fontawesome": "0.0.18",
         "bootstrap": "^4.1.3",
         "express": "^4.16.4",
-        "express-favicon": "^2.0.1",
         "firebase": "^5.5.8",
         "path": "^0.12.7",
         "react": "^16.6.3",
@@ -31,5 +30,5 @@
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
     },
-    "proxy": "http://server:4000"
+    "proxy": "http://web:4000"
 }

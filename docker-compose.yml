@@ -1,36 +1,21 @@
 version: '3'
 services:
-    client:
-        build: ./app/client
-        container_name: "client"
+    web:
+        build: ./app
+        container_name: "web"
         # restart: always
         environment:
             - NODE_ENV=development
-            - PORT=3000
             - CHOKIDAR_USEPOLLING=true
+            - SERVER_PORT=4000
         command:
-            - ./app/client/run.sh
+            - ./app/run.sh
         volumes:
-            - ./app/client:/app/client
+            - ./app:/app
+            - /app/server/node_modules # Trick to get the container to see node_modules
             - /app/client/node_modules
         ports:
             - 3000:3000
-        depends_on:
-            - server
-            - mongodb
-    server:
-        build: ./app/server
-        container_name: "server"
-        # restart: always
-        environment:
-            - NODE_ENV=development
-            - PORT=4000
-        command:
-            - ./app/server/run.sh
-        volumes:
-            - ./app/server:/app/server
-            - /app/server/node_modules # Trick to get the container to see node_modules
-        ports:
             - 4000:4000
         depends_on:
             - mongodb

@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 
 // set up express app
 const app = express();
@@ -19,9 +19,6 @@ var connectWithRetry = function() {
 // connect to mongodb
 connectWithRetry();
 mongoose.Promise = global.Promise;
-
-//set up static files
-app.use(express.static('public'));
 
 // use body-parser middleware
 app.use(bodyParser.json());
