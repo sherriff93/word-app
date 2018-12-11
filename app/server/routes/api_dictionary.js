@@ -1,6 +1,7 @@
 const express = require ('express');
 const router = express.Router();
 const Dictionary = require('../models/dictionary');
+const Word = require('../models/word');
 
 // get a list of dictionaries
 router.get('/', function(req, res, next){
@@ -18,26 +19,25 @@ router.post('/', function(req, res, next){
     }).catch(next);
 });
 
-// delete a given dictionary
+// delete a given dictionary and all it's words
 router.delete('/:id', function(req, res, next){
-    Dictionary.findByIdAndRemove({_id: req.params.id}).then(function(){
-        Dictionary.find().then(function(dictionaries){
-            res.send(dictionaries);
-        });
+    Dictionary.findByIdAndRemove({_id: req.params.id}).then(function(dictionary){
+        Word.deleteMany({dictionary: {$eq: dictionary.name}}).then(function(){
+            Dictionary.find().then(function(dictionaries){
+                res.send(dictionaries);
+            })
+        }).catch(next);
     }).catch(next);
-    // Word.deleteMany({dictionary: {$eq: req.params.dictionary}}).then(function(){
-    //     Word.find().then(function(dictionaries){
-    //         res.send(dictionaries);
-    //     });
-    // }).catch(next);
 });
 
-// update a dictionary
+// update a dictionary and all it's words
 router.put('/:id', function(req, res, next){
-    Dictionary.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-        Dictionary.find().then(function(dictionaries){
-            res.send(dictionaries);
-        });
+    Dictionary.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}).then(function(dictionary){
+        Word.update({dictionary: {$eq: dictionary.name}}, {$set: {dictionary: req.body.name}}, {multi: true}).then(function(){
+            Dictionary.find().then(function(dictionaries){
+                res.send(dictionaries);
+            })
+        }).catch(next);
     }).catch(next);
 });
 

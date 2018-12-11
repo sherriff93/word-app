@@ -1,7 +1,6 @@
 const express = require ('express');
 const router = express.Router();
 const Word = require('../models/word');
-const Dictionary = require('../models/dictionary');
 
 // get a list of words
 router.get('/', function(req, res, next){
