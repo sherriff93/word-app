@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Route} from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Dictionary from './Dictionary'
 import Header from './Header'
 import {fetchDictionariesByUid, insertDictionary} from "../lib/dictionary_functions";
@@ -40,6 +40,7 @@ class HomeLoggedIn extends Component {
                 </Sidebar>
                 
                 <Main>
+                    { Array.isArray(dictionaries) && dictionaries.length && <Redirect to={dictionaries[0].path} /> }
                     {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
