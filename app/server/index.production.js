@@ -25,10 +25,6 @@ app.get('/ping', function (req, res) {
     return res.send('pong');
 });
 
-app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
-
 /////// This code is the same as index.js
 
 var connectWithRetry = function() {
@@ -58,6 +54,10 @@ app.use(function(err, req, res, next){
 });
 
 ////////////////////////////////////////////////////
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 app.listen(port, function(){
     console.log('now listening for requests on port ' + port);
