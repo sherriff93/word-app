@@ -56,3 +56,7 @@ export const ButtonContainer = styled.span `
             justify-content: center;
             padding: 10px;
         `
+export const StyledForm = styled.form `
+            display: grid;
+            justify-content: center;
+        `

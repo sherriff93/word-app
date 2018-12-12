@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 import * as ROUTES from '../route_types';
 import {SignUpLink} from "./SignUp";
 import {SignInForm} from "./SignIn";
-import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer} from "../styles/PasswordForget";
+import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer, StyledForm} from "../styles/PasswordForget";
 
 const PasswordForgetPage = () =>
     <OuterContainer>
@@ -55,7 +55,7 @@ class PasswordForgetForm extends Component {
         const isInvalid = email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <StyledForm onSubmit={this.onSubmit}>
                 <StyledInput
                     name="email"
                     value={this.state.email}
@@ -68,7 +68,7 @@ class PasswordForgetForm extends Component {
                 </ButtonContainer>
 
                 { error && <p>{error.message}</p> }
-            </form>
+            </StyledForm>
         );
     }
 }

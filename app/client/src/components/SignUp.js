@@ -11,7 +11,7 @@ import HeaderNavigation from "./Navigation/HeaderNavigation";
 import {GridContainer, Main} from "../styles/Landing";
 import {PasswordForgetLink} from "./PasswordForget";
 import {SignInForm} from "./SignIn";
-import {OuterContainer, ButtonContainer, Button, Contents, StyledInput, InnerContainer} from "../styles/SignUp";
+import {OuterContainer, ButtonContainer, Button, Contents, StyledInput, InnerContainer, StyledForm} from "../styles/SignUp";
 
 const SignUpPage = ({ history }) =>
         <OuterContainer>
@@ -81,7 +81,7 @@ class SignUpForm extends Component {
 
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <StyledForm onSubmit={this.onSubmit}>
                 <StyledInput
                     name="username"
                     value={username}
@@ -117,7 +117,7 @@ class SignUpForm extends Component {
                 </ButtonContainer>
 
                 { error && <p className="alert alert-danger">{error.message}</p> }
-            </form>
+            </StyledForm>
         );
     }
 }

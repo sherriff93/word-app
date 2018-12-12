@@ -6,7 +6,7 @@ import {auth} from '../firebase';
 import * as ROUTES from '../route_types';
 import {Header, Logo} from "../globalStyles";
 import {GridContainer, LogoLarge, Main} from "../styles/Landing";
-import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer} from "../styles/SignIn";
+import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer, StyledForm} from "../styles/SignIn";
 
 const SignInPage = ({ history }) =>
     <OuterContainer>
@@ -70,7 +70,7 @@ class SignInForm extends Component {
             email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <StyledForm onSubmit={this.onSubmit}>
                 <StyledInput
                     name="email"
                     value={email}
@@ -90,7 +90,7 @@ class SignInForm extends Component {
     </ButtonContainer>
 
     { error && <p className="alert alert-danger">{error.message}</p> }
-    </form>
+    </StyledForm>
     );
     }
 }
