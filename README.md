@@ -19,6 +19,8 @@ The app currently includes:
 
 Still to come:
 - Further styling and UI changes
+- Making site mobile friendly
+- IE browser testing
 - HTTPS/SSL certificate
 - Incorporating multiple languages
 - Automatic translations with the Google translate API
