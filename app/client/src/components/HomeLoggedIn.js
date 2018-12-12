@@ -40,7 +40,7 @@ class HomeLoggedIn extends Component {
                 </Sidebar>
                 
                 <Main>
-                    { Array.isArray(dictionaries) && dictionaries.length && <Redirect to={dictionaries[0].path} /> }
+                    { Array.isArray(dictionaries) && !!dictionaries.length && <Redirect to={dictionaries[0].path} /> }
                     {dictionaries.map((dictionary, index) => (<Route key={index} path={dictionary.path} exact={dictionary.exact} component={dictionary.main}/>))}
                 </Main>
             </GridContainer>
