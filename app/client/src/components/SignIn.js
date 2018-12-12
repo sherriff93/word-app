@@ -5,16 +5,19 @@ import {PasswordForgetLink} from './PasswordForget';
 import {auth} from '../firebase';
 import * as ROUTES from '../route_types';
 import {Header, Logo} from "../globalStyles";
-import HeaderNavigation from "./Navigation/HeaderNavigation";
 import {GridContainer, LogoLarge, Main} from "../styles/Landing";
+import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer} from "../styles/SignIn";
 
 const SignInPage = ({ history }) =>
-        <div>
-            <h1>SignIn</h1>
-            <SignInForm history={history} />
-            <PasswordForgetLink />
-            <SignUpLink />
-        </div>
+    <OuterContainer>
+        <InnerContainer>
+            <Contents>
+                <SignInForm history={history} />
+                <PasswordForgetLink />
+                <SignUpLink />
+            </Contents>
+        </InnerContainer>
+    </OuterContainer>
 
 const INITIAL_STATE = {
     email: '',
@@ -68,25 +71,25 @@ class SignInForm extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
+                <StyledInput
                     name="email"
                     value={email}
                     onChange={this.onChange}
                 type="text"
                   placeholder="Email Address"
             />
-        <input
+        <StyledInput
             name="password"
             value={password}
             onChange={this.onChange}
     type="password"
     placeholder="Password"
     />
-        <button disabled={isInvalid} type="submit">
-            Sign In
-        </button>
+    <ButtonContainer>
+        <Button className="btn btn-success" disabled={isInvalid} type="submit">Sign In</Button>
+    </ButtonContainer>
 
-    { error && <p>{error.message}</p> }
+    { error && <p className="alert alert-danger">{error.message}</p> }
     </form>
     );
     }

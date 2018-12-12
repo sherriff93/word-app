@@ -11,12 +11,16 @@ import HeaderNavigation from "./Navigation/HeaderNavigation";
 import {GridContainer, Main} from "../styles/Landing";
 import {PasswordForgetLink} from "./PasswordForget";
 import {SignInForm} from "./SignIn";
+import {OuterContainer, ButtonContainer, Button, Contents, StyledInput, InnerContainer, StyledHeader} from "../styles/SignUp";
 
 const SignUpPage = ({ history }) =>
-        <div>
-            <h1>SignUp</h1>
-            <SignUpForm history={history} />
-        </div>
+        <OuterContainer>
+            <InnerContainer>
+                <Contents>
+                    <SignUpForm history={history} />
+                </Contents>
+            </InnerContainer>
+        </OuterContainer>
 
 const INITIAL_STATE = {
     username: '',
@@ -78,50 +82,52 @@ class SignUpForm extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
+                <StyledInput
                     name="username"
                     value={username}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Full Name"
                 />
-                <input
+                <StyledInput
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
-                <input
+                <StyledInput
                     name="passwordOne"
                     value={passwordOne}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
-                <input
+                <StyledInput
                     name="passwordTwo"
                     value={passwordTwo}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Confirm Password"
                 />
-                <button disabled={isInvalid} type="submit">
-                    Sign Up
-                </button>
+                <ButtonContainer>
+                    <Button className="btn btn-success" disabled={isInvalid} type="submit">
+                        Sign Up
+                    </Button>
+                </ButtonContainer>
 
-                { error && <p>{error.message}</p> }
+                { error && <p className="alert alert-danger">{error.message}</p> }
             </form>
         );
     }
 }
 
 const SignUpLink = () =>
-    <p>
+    <div>
         Don't have an account?
         {' '}
         <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-    </p>
+    </div>
 
 export default withRouter(SignUpPage);
 

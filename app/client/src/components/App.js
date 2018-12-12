@@ -23,14 +23,10 @@ import {deleteWord} from "../lib/word_functions";
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loading: true
-        };
     }
     
     componentDidMount() { // check to see if already signed in.
         this.props.fetchUser()
-        this.setState({loading: false})
     }
     
     render() {
@@ -38,7 +34,7 @@ class App extends Component {
             <Router>
                 <OuterContainer>
                     {
-                        this.state.loading ?
+                        this.props.loading ?
                             <LoadingPage />
                             :
                             this.props.user ?
@@ -62,7 +58,8 @@ class App extends Component {
 const mapStateToProps = function(store) {
     return {
         showPopupWithParams: store.appState.showPopupWithParams,
-        user: store.appState.user
+        user: store.appState.user,
+        loading: store.appState.loading
     }
 }
 
