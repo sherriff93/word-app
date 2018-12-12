@@ -9,6 +9,10 @@ const DictionarySchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name field is required']
+    },
+    uid: {
+        type: String,
+        required: [true, 'User ID field is required']
     }
 })
 

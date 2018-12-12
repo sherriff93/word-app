@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import Dictionary from './Dictionary'
 import Header from './Header'
-import {fetchDictionaries, insertDictionaryByName} from "../lib/dictionary_functions";
+import {fetchDictionariesByUid, insertDictionary} from "../lib/dictionary_functions";
 import {GridContainer, Main, Sidebar, Button, ButtonContainer, Logo} from "../styles/HomeLoggedIn";
 import withAuthorization from "./Session/WithAuthorization";
 import {IS_SIGNED_IN} from "../authConditions";
@@ -15,7 +15,8 @@ import {withRouter} from 'react-router-dom';
 class HomeLoggedIn extends Component {
 
     componentDidMount(){
-        this.props.populate()
+        const {populate, user} = this.props
+        populate(user.uid)
     }
     
     constructor(props) {
@@ -23,6 +24,7 @@ class HomeLoggedIn extends Component {
         this.state = { 
             activeIndex: 0
         }
+        this.insertDictionary = this.insertDictionary.bind(this)
     }
     // TODO convert logo to svg
     render() {
@@ -32,7 +34,7 @@ class HomeLoggedIn extends Component {
                 <Header />
                 <Sidebar>
                     <ButtonContainer>
-                        <Button className="btn btn-success" onClick={this.props.insertDictionaryByName}>Add Dictionary</Button>
+                        <Button className="btn btn-success" onClick={this.insertDictionary}>Add Dictionary</Button>
                     </ButtonContainer>
                     {dictionaries.map((dictionary, index) => (<Dictionary key={index} matchPath={match.path} dictionary={dictionary} active={this.state.activeIndex === index} onClick={() => this.setActiveItem(index)}/>))}
                 </Sidebar>
@@ -48,22 +50,29 @@ class HomeLoggedIn extends Component {
     setActiveItem(index) {
         this.setState({ activeIndex: index });
     }
+
+    insertDictionary() {
+        const {insertDictionary, user} = this.props
+        const dictionaryName = prompt()
+        const uid = user.uid
+        insertDictionary(dictionaryName, uid)
+    }
 }
 
 const mapStateToProps = function(store) {
     return {
         dictionaries: store.homeState.dictionaries,
+        user: store.appState.user
     }
 }
 
 const mapDispatchToProps = function(dispatch) {
     return {
-        populate: () => {
-            fetchDictionaries(dispatch)
+        populate: (uid) => {
+            fetchDictionariesByUid(uid, dispatch)
         },
-        insertDictionaryByName: () => {
-            const dictionaryName = prompt()
-            insertDictionaryByName(dictionaryName, dispatch)
+        insertDictionary: (dictionaryName, uid) => {
+            insertDictionary(dictionaryName, uid, dispatch)
         }
     }
 }

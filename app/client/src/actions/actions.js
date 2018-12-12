@@ -65,3 +65,10 @@ export function hideCurrentPopup() {
         type: types.HIDE_CURRENT_POPUP,
     }
 }
+
+export function fetchUser(user) {
+    return {
+        type: types.FETCH_USER,
+        user
+    }
+}

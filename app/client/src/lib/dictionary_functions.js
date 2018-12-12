@@ -13,7 +13,20 @@ function fetchDictionaries(dispatch) {
         })
 }
 
-function insertDictionaryByName(dictionaryName, dispatch) {
+function fetchDictionariesByUid(uid, dispatch) {
+    fetch('/routes/dictionaries/' + uid)
+        .then(response => {
+            if(response.status === 200){
+                response.json() // TODO What happens if this fails?
+                    .then(json => dispatch(fetchDictionariesSuccess(json)))
+            }
+            else{
+                dispatch(fetchDictionariesFail())
+            }
+        })
+}
+
+function insertDictionary(dictionaryName, uid, dispatch) {
     fetch('/routes/dictionaries', {
         method: 'POST',
         headers: {
@@ -21,6 +34,7 @@ function insertDictionaryByName(dictionaryName, dispatch) {
         },
         body: JSON.stringify({
             name: dictionaryName,
+            uid: uid
         },)
     })
         .then(response => {
@@ -35,6 +49,7 @@ function insertDictionaryByName(dictionaryName, dispatch) {
 }
 
 function deleteDictionaryById(id, dispatch) {
+    console.log(id)
     fetch('/routes/dictionaries/' + id, {
         method: 'DELETE'
     })
@@ -79,8 +94,8 @@ function editDictionaryNameById(id, newName, dispatch) {
 }
 
 module.exports = {
-    fetchDictionaries: fetchDictionaries,
-    insertDictionaryByName: insertDictionaryByName,
+    fetchDictionariesByUid: fetchDictionariesByUid,
+    insertDictionary: insertDictionary,
     deleteDictionaryById: deleteDictionaryById,
     editDictionaryNameById: editDictionaryNameById,
 }

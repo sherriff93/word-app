@@ -1,7 +1,8 @@
 import * as types from '../actions/action-types'
 
 const initialState = {
-    showPopupWithParams: null
+    showPopupWithParams: null,
+    user: null
 }
 
 const appReducer = function (state = initialState, action) {
@@ -17,6 +18,10 @@ const appReducer = function (state = initialState, action) {
             newState = {...state, showPopupWithParams}
             break
         }
+        case types.FETCH_USER:
+            const user = action.user || null
+            newState = {...state, user}
+            break
         case types.HIDE_CURRENT_POPUP: {
             showPopupWithParams = null
             newState = {...state, showPopupWithParams}

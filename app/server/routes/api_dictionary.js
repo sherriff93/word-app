@@ -3,44 +3,50 @@ const router = express.Router();
 const Dictionary = require('../models/dictionary');
 const Word = require('../models/word');
 
-// get a list of dictionaries
-router.get('/', function(req, res, next){
+const fetchDictionaries = function(res, next){
     Dictionary.find().then(function(dictionaries){
         res.send(dictionaries);
     }).catch(next);
-});
+}
 
-// add a new dictionary
-router.post('/', function(req, res, next){
-    Dictionary.create(req.body).then(function(dictionary){
-        Dictionary.findByIdAndUpdate({_id: dictionary.id}, {$set: {path: '/' + dictionary.id}}).then(function(){
-            Dictionary.find().then(function(dictionaries){
-                res.send(dictionaries);
-            })
-        }).catch(next);
+const fetchDictionariesByUid = function(uid, res, next){
+    Dictionary.find({uid: uid}).then(function(dictionaries){
+        res.send(dictionaries);
     }).catch(next);
-});
+}
 
-// delete a given dictionary and all it's words
-router.delete('/:id', function(req, res, next){
-    Dictionary.findByIdAndRemove({_id: req.params.id}).then(function(dictionary){
-        Word.deleteMany({dictionary: {$eq: dictionary.name}}).then(function(){
-            Dictionary.find().then(function(dictionaries){
-                res.send(dictionaries);
-            })
-        }).catch(next);
+const insertDictionary = function(dictionaryName, uid, res, next){
+    Dictionary.create({
+        name: dictionaryName,
+        uid: uid
+    }).then(function(dictionary){
+        Dictionary.findByIdAndUpdate({_id: dictionary.id}, {$set: {path: '/' + dictionary.id}}).then(
+            () => fetchDictionariesByUid(uid, res, next)
+        )
     }).catch(next);
-});
+}
 
-// update a dictionary and all it's words
-router.put('/:id', function(req, res, next){
-    Dictionary.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}).then(function(dictionary){
-        Word.update({dictionary: {$eq: dictionary.name}}, {$set: {dictionary: req.body.name}}, {multi: true}).then(function(){
-            Dictionary.find().then(function(dictionaries){
-                res.send(dictionaries);
-            })
-        }).catch(next);
+const deleteDictionaryAndWordsByDictionaryId = function(id, res, next) {
+    Dictionary.findByIdAndRemove({_id: id}).then(function (dictionary) {
+        console.log(id)
+        Word.deleteMany({dictionary: {$eq: dictionary.name}}).then(
+            () => fetchDictionariesByUid(dictionary.uid, res, next)
+        ).catch(next);
     }).catch(next);
-});
+}
+
+const updateDictionaryAndWordsByDictionaryId = function(id, name, res, next){
+    Dictionary.findByIdAndUpdate({_id: id}, {$set: {name: name}}).then(function(dictionary){
+        Word.update({dictionary: {$eq: dictionary.name}}, {$set: {dictionary: name}}, {multi: true}).then(
+            () => fetchDictionariesByUid(dictionary.uid, res, next)
+        ).catch(next);
+    }).catch(next);
+}
+
+router.get('/', (req, res, next) => fetchDictionaries(res, next));
+router.get('/:uid', (req, res, next) => fetchDictionariesByUid(req.params.uid, res, next));
+router.post('/', (req, res, next) => insertDictionary(req.body.name, req.body.uid, res, next));
+router.delete('/:id', (req, res, next) => deleteDictionaryAndWordsByDictionaryId(req.params.id, res, next));
+router.put('/:id', (req, res, next) => updateDictionaryAndWordsByDictionaryId(req.params.id, req.body.name, res, next));
 
 module.exports = router;

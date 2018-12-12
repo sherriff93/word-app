@@ -14,29 +14,23 @@ import Admin from "./Admin";
 import Landing from "./Landing";
 import HomeLoggedOut from "./HomeLoggedOut"
 import DictionaryMain from "./DictionaryMain";
-import {showEditDictionaryPopup} from "../actions/actions";
+import {fetchUser} from "../actions/actions";
 import { firebase } from '../firebase';
 import HomeLoggedIn from "./HomeLoggedIn"
 import LoadingPage from "./LoadingPage"
+import {deleteWord} from "../lib/word_functions";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
-            auth: false
+            loading: true
         };
     }
     
     componentDidMount() { // check to see if already signed in.
-        firebase.auth.onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({auth: user});
-            } else {
-                this.setState({auth: false});
-            }
-            this.setState({loading: false});
-        });
+        this.props.fetchUser()
+        this.setState({loading: false})
     }
     
     render() {
@@ -46,11 +40,11 @@ class App extends Component {
                     {
                         this.state.loading ?
                             <LoadingPage />
-                        :
-                            this.state.auth ?
+                            :
+                            this.props.user ?
                                 <HomeLoggedIn /> :
                                 <HomeLoggedOut />
-                        
+
                     }
                     {
                         this.props.showPopupWithParams ?
@@ -64,13 +58,23 @@ class App extends Component {
         )
     }
 }
-        
 
 const mapStateToProps = function(store) {
     return {
-        showPopupWithParams: store.appState.showPopupWithParams
+        showPopupWithParams: store.appState.showPopupWithParams,
+        user: store.appState.user
     }
 }
 
-export default connect(mapStateToProps)(withAuthentication(App))
+const mapDispatchToProps = function(dispatch) {
+    return {
+        fetchUser: () => {
+            firebase.auth.onAuthStateChanged(user => {
+                dispatch(fetchUser(user))
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(App))
 
