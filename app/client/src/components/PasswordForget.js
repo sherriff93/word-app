@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 
 import { auth } from '../firebase';
 import * as ROUTES from '../route_types';
+import {SignUpLink} from "./SignUp";
+import {SignInForm} from "./SignIn";
+import {OuterContainer, InnerContainer, StyledInput, Contents, Button, ButtonContainer} from "../styles/PasswordForget";
 
 const PasswordForgetPage = () =>
-    <div>
-        <h1>PasswordForget</h1>
-        <PasswordForgetForm />
-    </div>
+    <OuterContainer>
+        <InnerContainer>
+            <Contents>
+                <PasswordForgetForm />
+            </Contents>
+        </InnerContainer>
+    </OuterContainer>
 
 const INITIAL_STATE = {
     email: '',
@@ -50,16 +56,16 @@ class PasswordForgetForm extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
+                <StyledInput
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
-                <button disabled={isInvalid} type="submit">
-                    Reset My Password
-                </button>
+                <ButtonContainer>
+                    <Button className="btn btn-success" disabled={isInvalid} type="submit">Reset My Password</Button>
+                </ButtonContainer>
 
                 { error && <p>{error.message}</p> }
             </form>

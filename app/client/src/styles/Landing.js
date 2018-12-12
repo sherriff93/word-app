@@ -20,14 +20,18 @@ export const OuterContainer = styled.div `
     `
 export const InnerContainer = styled.div `
             grid-column: 2/3;
+            text-align: center;
     `
 export const LogoContainer = styled.div `
             width: 100%;
             position: relative;
             display: flex;
-            padding: 180px 0 20px 0;
+            padding: 150px 0 20px 0;
             align-items: center;
             &>img {
                 width: 100%;
             }
+    `
+export const Header = styled.h2 `
+            color: white;
     `

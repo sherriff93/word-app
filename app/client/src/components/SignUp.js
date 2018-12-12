@@ -11,7 +11,7 @@ import HeaderNavigation from "./Navigation/HeaderNavigation";
 import {GridContainer, Main} from "../styles/Landing";
 import {PasswordForgetLink} from "./PasswordForget";
 import {SignInForm} from "./SignIn";
-import {OuterContainer, ButtonContainer, Button, Contents, StyledInput, InnerContainer, StyledHeader} from "../styles/SignUp";
+import {OuterContainer, ButtonContainer, Button, Contents, StyledInput, InnerContainer} from "../styles/SignUp";
 
 const SignUpPage = ({ history }) =>
         <OuterContainer>

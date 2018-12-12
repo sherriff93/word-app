@@ -56,9 +56,3 @@ export const ButtonContainer = styled.span `
             justify-content: center;
             padding: 10px;
         `
-export const StyledHeader = styled.h1 `
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        `

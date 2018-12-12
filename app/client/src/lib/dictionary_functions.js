@@ -49,7 +49,6 @@ function insertDictionary(dictionaryName, uid, dispatch) {
 }
 
 function deleteDictionaryById(id, dispatch) {
-    console.log(id)
     fetch('/routes/dictionaries/' + id, {
         method: 'DELETE'
     })

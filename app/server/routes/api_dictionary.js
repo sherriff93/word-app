@@ -28,7 +28,6 @@ const insertDictionary = function(dictionaryName, uid, res, next){
 
 const deleteDictionaryAndWordsByDictionaryId = function(id, res, next) {
     Dictionary.findByIdAndRemove({_id: id}).then(function (dictionary) {
-        console.log(id)
         Word.deleteMany({dictionary: {$eq: dictionary.name}}).then(
             () => fetchDictionariesByUid(dictionary.uid, res, next)
         ).catch(next);

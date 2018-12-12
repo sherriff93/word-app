@@ -56,15 +56,15 @@ class Navigation extends Component {
 
 const NavigationAuth = () =>
     <div className="dropdown-menu show">
-        <StyledLink className="dropdown-item" to={ROUTES.ACCOUNT}>Account</StyledLink>
-        <StyledLink className="dropdown-item" to={ROUTES.ADMIN}>Admin</StyledLink>
+        {/*<StyledLink className="dropdown-item" to={ROUTES.ACCOUNT}>Account</StyledLink>*/}
+        {/*<StyledLink className="dropdown-item" to={ROUTES.ADMIN}>Admin</StyledLink>*/}
         <SignOutButton />
     </div>
 
 const NavigationNonAuth = () =>
     <div className="dropdown-menu show">
-        <StyledLink className="dropdown-item" to={ROUTES.LANDING}>Landing</StyledLink>
         <StyledLink className="dropdown-item" to={ROUTES.SIGN_IN}>Sign In</StyledLink>
+        <StyledLink className="dropdown-item" to={ROUTES.SIGN_UP}>Sign Up</StyledLink>
     </div>
 
 export default Navigation;
